@@ -2,7 +2,11 @@
 
 The site's signup forms (homepage, shop, science, subscribe waitlist, and the discount popup) are wired to post to a real email tool with a **verified** success response — visitors only see "you're on the list" if the provider actually accepted the email. The old Shopify `/contact` workaround was removed (Shopify structurally rejects it on stores using New customer accounts — see the technical handoff doc, Section 4).
 
-**Current state: not configured.** Until the steps below are done, forms politely say "signups aren't live just yet" instead of faking a confirmation. Nothing is silently lost.
+**Current state: CONFIGURED & VERIFIED (2026-07-17).** Klaviyo is live (site ID `TULcea`, list `U5ccR9`), the full form → Klaviyo path was tested end-to-end (202 accepted + on-page confirmation), and the discount popup is enabled. The steps below are kept for reference / if the account ever changes.
+
+**Two follow-ups in Klaviyo (owner to-do):**
+1. **Switch the `waitlist` list to single opt-in** (list → Settings → Consent). Klaviyo lists default to double opt-in, which sends a Klaviyo-branded "confirm your subscription" email — off-brand, and unconfirmed signups don't count as subscribed. Single opt-in is the right call for a waitlist.
+2. **Delete the two setup test contacts** before any launch email: `qt.capture.test.2026@gmail.com` and `qt.popup.test.2026@gmail.com`.
 
 ## Step 1 — create the account (one of these, not both)
 

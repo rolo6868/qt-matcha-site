@@ -34,11 +34,11 @@ document.querySelectorAll('.faq-q').forEach((btn) => {
 (() => {
   // ---- capture backend config — fill in ONE provider (see EMAIL-CAPTURE.md) ----
   const CAPTURE = {
-    provider: '',            // 'klaviyo' or 'mailchimp'  ('' = signups not live yet)
+    provider: 'klaviyo',     // 'klaviyo' or 'mailchimp'  ('' = signups not live yet)
     // Klaviyo: Settings → API keys → "Public API Key / Site ID" (6 chars)…
-    klaviyoCompanyId: '',
+    klaviyoCompanyId: 'TULcea',
     // …and the List ID of the waitlist list (Lists & Segments → the list → Settings)
-    klaviyoListId: '',
+    klaviyoListId: 'U5ccR9',
     // Mailchimp: Audience → Signup forms → Embedded form → copy the <form action="…"> URL
     // (looks like https://xxxx.usX.list-manage.com/subscribe/post?u=…&id=…)
     mailchimpFormAction: ''
@@ -94,9 +94,8 @@ document.querySelectorAll('.faq-q').forEach((btn) => {
   }
 
   // ---- discount popup (skip subscribe.html, which already has a waitlist form) ----
-  // Enable AFTER capture is configured and one real signup is verified landing in
-  // the email tool (see EMAIL-CAPTURE.md step 4).
-  const POPUP_ENABLED = false;
+  // Klaviyo capture configured + verified (202 from the client API on 2026-07-17).
+  const POPUP_ENABLED = true;
   const onSubscribePage = !!document.getElementById('waitlist-form');
   if (POPUP_ENABLED && !onSubscribePage) buildPopup();
 
@@ -108,12 +107,16 @@ document.querySelectorAll('.faq-q').forEach((btn) => {
         opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease;}
       .qt-pop-overlay.open{opacity:1;visibility:visible;}
       .qt-pop-card{position:relative;width:min(440px,100%);background:var(--cream);border-radius:var(--radius-lg,32px);
-        padding:38px 34px 30px;box-shadow:0 24px 60px rgba(35,79,32,.28);text-align:center;
+        padding:0 0 30px;box-shadow:0 24px 60px rgba(35,79,32,.28);text-align:center;
         transform:translateY(16px) scale(.97);transition:transform .3s cubic-bezier(.2,.8,.2,1);
-        border:3px solid var(--pink-pale);}
+        border:3px solid var(--pink-pale);overflow:hidden;}
+      .qt-pop-img{display:block;width:100%;max-height:180px;object-fit:cover;object-position:center 62%;}
+      .qt-pop-body{padding:20px 34px 0;}
+      @media (max-height:700px){.qt-pop-img{max-height:120px;}}
       .qt-pop-overlay.open .qt-pop-card{transform:translateY(0) scale(1);}
-      .qt-pop-close{position:absolute;top:14px;right:16px;background:none;border:none;cursor:pointer;
-        font-size:1.5rem;line-height:1;color:var(--green-dark);opacity:.5;padding:4px;}
+      .qt-pop-close{position:absolute;top:12px;right:12px;z-index:2;background:rgba(255,255,255,.88);border:none;cursor:pointer;
+        font-size:1.35rem;line-height:1;color:var(--green-dark);opacity:.85;width:32px;height:32px;border-radius:50%;
+        display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,79,32,.18);}
       .qt-pop-close:hover{opacity:1;}
       .qt-pop-tag{display:inline-block;font-family:var(--font-display);font-weight:700;font-size:.8rem;
         color:var(--pink-hot);letter-spacing:.04em;text-transform:lowercase;margin-bottom:8px;}
@@ -146,15 +149,18 @@ document.querySelectorAll('.faq-q').forEach((btn) => {
     overlay.innerHTML = `
       <div class="qt-pop-card">
         <button class="qt-pop-close" aria-label="Close">&times;</button>
-        <span class="qt-pop-tag">🌸 the qt club</span>
-        <h3><span class="hl">15% off</span> your first order</h3>
-        <p class="qt-pop-sub">We're almost ready to pour. Join the list and we'll email your 15%-off code the day we launch — plus first dibs on flavors &amp; iron-friendly recipes.</p>
-        <form class="news-form qt-pop-form" data-tags="newsletter,waitlist,popup" data-success="you're in — your 15% code lands in your inbox at launch 🍵">
-          <input type="email" placeholder="your email, qt" required aria-label="Email address">
-          <button type="submit">save my 15% →</button>
-        </form>
-        <p class="qt-pop-fine">One email at launch. No spam, skip anytime.</p>
-        <button class="qt-pop-dismiss" type="button">no thanks, I'll pay full price</button>
+        <img class="qt-pop-img" src="images/flavor-flight.jpg" alt="qt matcha — vanilla, strawberry and coconut boxes">
+        <div class="qt-pop-body">
+          <span class="qt-pop-tag">🌸 the qt club</span>
+          <h3><span class="hl">15% off</span> your first order</h3>
+          <p class="qt-pop-sub">We're almost ready to pour. Join the list and we'll email your 15%-off code the day we launch — plus first dibs on flavors &amp; iron-friendly recipes.</p>
+          <form class="news-form qt-pop-form" data-tags="newsletter,waitlist,popup" data-success="you're in — your 15% code lands in your inbox at launch 🍵">
+            <input type="email" placeholder="your email, qt" required aria-label="Email address">
+            <button type="submit">save my 15% →</button>
+          </form>
+          <p class="qt-pop-fine">One email at launch. No spam, skip anytime.</p>
+          <button class="qt-pop-dismiss" type="button">no thanks, I'll pay full price</button>
+        </div>
       </div>`;
     document.body.appendChild(overlay);
 
