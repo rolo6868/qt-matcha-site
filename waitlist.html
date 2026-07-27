@@ -60,6 +60,15 @@
       .stage { left: 6%; right: 6%; bottom: 10vh; }
       .scrub { height: 280vh; }
     }
+    /* benefits: always an even grid — 4-up desktop, 2x2 on mobile */
+    .wl-benefits { max-width: 1000px; margin: 0 auto; }
+    @media (max-width: 560px) {
+      .wl-benefits { grid-template-columns: 1fr 1fr !important; gap: 12px; }
+      .wl-benefits .benefit { padding: 20px 14px; }
+      .wl-benefits .benefit h3 { font-size: 1rem; }
+      .wl-benefits .benefit p { font-size: 0.82rem; }
+      .wl-benefits .icon { font-size: 1.6rem; }
+    }
     @media (prefers-reduced-motion: reduce) {
       .scrub { height: auto; }
       .scrub-sticky { position: relative; height: 100vh; }
@@ -145,7 +154,7 @@
   <!-- WHY QT, BRIEFLY -->
   <section class="block" style="padding-top: 30px;">
     <div class="container">
-      <div class="benefits" style="max-width: 900px; margin: 0 auto;">
+      <div class="benefits wl-benefits">
         <div class="benefit">
           <div class="icon">🍊</div>
           <h3>iron-conscious</h3>
@@ -160,6 +169,11 @@
           <div class="icon">🍵</div>
           <h3>ceremonial grade</h3>
           <p>First-harvest, stone-ground, whisked or shaken in thirty seconds flat.</p>
+        </div>
+        <div class="benefit">
+          <div class="icon">💚</div>
+          <h3>clean by default</h3>
+          <p>Vegan, gluten free, no added sugar, nothing artificial. Ever.</p>
         </div>
       </div>
     </div>
