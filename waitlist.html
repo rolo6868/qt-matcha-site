@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>join the waitlist — qt matcha</title>
+  <meta name="description" content="qt matcha launches in a few weeks — ceremonial-grade, iron-conscious matcha in three flagship flavors. Join the waitlist for launch updates and 15% off your first order.">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ---- waitlist hero ---- */
+    .wl-hero { background: linear-gradient(160deg, var(--pink-pale) 0%, var(--cream) 90%); text-align: center; padding: 44px 0 54px; }
+    .wl-hero h1 { font-size: clamp(2.1rem, 5.5vw, 3.6rem); color: var(--green-dark); line-height: 1.05; margin: 10px auto 14px; max-width: 18ch; }
+    .wl-hero h1 em { font-style: normal; color: var(--pink-hot); }
+    .wl-hero .lead { font-weight: 600; max-width: 52ch; margin: 0 auto 24px; font-size: 1.05rem; }
+    .wl-fine { font-size: 0.8rem; font-weight: 600; opacity: 0.65; margin-top: 12px; }
+    .wl-form input { min-width: min(320px, 78vw); }
+    .wl-form .btn { white-space: nowrap; }
+
+    /* ---- scroll-scrub (same engine as the homepage) ---- */
+    .scrub { height: 380vh; position: relative; background: #FDF8EE; }
+    .scrub-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+    #scrub-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    .stage { position: absolute; left: 6%; bottom: 12vh; max-width: 480px; opacity: 0; transform: translateY(24px) rotate(var(--tilt, 0deg)); transition: opacity 0.35s ease, transform 0.35s ease; pointer-events: none;
+      border-radius: 26px; padding: 24px 26px 26px; box-shadow: 0 14px 36px rgba(35,79,32,0.2); }
+    .stage.on { transform: translateY(0) rotate(var(--tilt, 0deg)); }
+    .stage .st-kicker { display: inline-block; padding: 5px 14px; border-radius: 99px; font-size: 0.78rem; letter-spacing: 0.09em; margin-bottom: 12px; text-shadow: none; }
+    .stage.c-green { background: var(--green-deep); --tilt: -0.7deg; }
+    .stage.c-green h1, .stage.c-green h2 { color: #fff; }
+    .stage.c-green p { color: rgba(255,255,255,0.92); }
+    .stage.c-green .st-kicker { background: var(--chartreuse); color: var(--green-dark); }
+    .stage.c-lime { background: var(--chartreuse); --tilt: 0.7deg; }
+    .stage.c-lime h1, .stage.c-lime h2 { color: var(--green-dark); }
+    .stage.c-lime p { color: var(--green-dark); }
+    .stage.c-lime .st-kicker { background: var(--green-deep); color: var(--cream); }
+    .stage.c-pink { background: var(--pink); --tilt: -0.7deg; }
+    .stage.c-pink h1, .stage.c-pink h2 { color: var(--green-dark); }
+    .stage.c-pink p { color: #5c3448; }
+    .stage.c-pink .st-kicker { background: #fff; color: var(--pink-hot); }
+    .stage.c-orange { background: var(--orange); --tilt: 0.7deg; }
+    .stage.c-orange h1, .stage.c-orange h2 { color: var(--green-dark); }
+    .stage.c-orange p { color: #5c3a14; }
+    .stage.c-orange .st-kicker { background: var(--green-deep); color: var(--cream); }
+    .stage.on { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .stage .st-kicker { font-family: var(--font-display); font-weight: 700; letter-spacing: 0.1em; text-transform: lowercase; margin-bottom: 6px; }
+    .stage h1, .stage h2 { text-shadow: none; font-size: clamp(2.2rem, 5.5vw, 4.2rem); line-height: 1.02; margin-bottom: 10px; }
+    .stage p { text-shadow: none; font-weight: 600; font-size: 1.05rem; max-width: 40ch; margin-bottom: 16px; }
+    .stage .hero-cta { margin-bottom: 0; }
+    .scrub-hint { position: absolute; bottom: 3.5vh; left: 50%; transform: translateX(-50%); color: var(--green-deep); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; animation: hintbob 1.6s ease-in-out infinite; }
+    @keyframes hintbob { 0%,100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 8px); } }
+    .scrub-load { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: #FDF8EE; color: var(--green-deep); font-family: var(--font-display); font-weight: 700; z-index: 5; transition: opacity 0.5s ease; }
+    .scrub-load .sl-bar { width: min(280px, 60vw); height: 8px; border-radius: 99px; background: rgba(47,107,43,0.15); overflow: hidden; }
+    .scrub-load .sl-bar i { display: block; height: 100%; width: 0%; background: var(--green-deep); border-radius: 99px; transition: width 0.2s ease; }
+    .scrub-load.done { opacity: 0; pointer-events: none; }
+    @media (max-width: 700px) {
+      .stage { left: 6%; right: 6%; bottom: 10vh; }
+      .scrub { height: 280vh; }
+    }
+    /* benefits: always an even grid — 4-up desktop, 2x2 on mobile */
+    .wl-benefits { max-width: 1000px; margin: 0 auto; }
+    @media (max-width: 560px) {
+      .wl-benefits { grid-template-columns: 1fr 1fr !important; gap: 12px; }
+      .wl-benefits .benefit { padding: 20px 14px; }
+      .wl-benefits .benefit h3 { font-size: 1rem; }
+      .wl-benefits .benefit p { font-size: 0.82rem; }
+      .wl-benefits .icon { font-size: 1.6rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .scrub { height: auto; }
+      .scrub-sticky { position: relative; height: 100vh; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="announce">first production run — arriving in a few weeks 🍵</div>
+
+  <!-- minimal nav: logo only, no exits -->
+  <nav class="nav">
+    <div class="container nav-inner" style="justify-content:center;">
+      <a href="index.html" class="logo">qt<span>matcha</span></a>
+    </div>
+  </nav>
+
+  <!-- CAPTURE HERO -->
+  <header class="wl-hero">
+    <div class="container">
+      <div class="kicker">🌸 the qt club waitlist</div>
+      <h1>matcha that <em>loves you back</em> — almost here</h1>
+      <p class="lead">qt is ceremonial-grade, iron-conscious matcha in three flagship flavors — vanilla, strawberry, and coconut. Our first production run lands in the next few weeks. Drop your email and you'll get launch updates and <b>15% off your first order</b>.</p>
+      <form id="waitlist-form" class="news-form wl-form" data-tags="waitlist,landing" data-success="you're in — updates + your 15% code are on the way 🍵">
+        <input type="email" placeholder="your email, qt" required aria-label="Email address">
+        <button type="submit" class="btn btn-pink">join the waitlist →</button>
+      </form>
+      <p class="wl-fine">Nothing to buy yet — just first dibs, launch updates, and your discount. No spam, ever.</p>
+    </div>
+  </header>
+
+  <!-- SCROLL-SCRUB: the pour -->
+  <section class="scrub" id="scrub">
+    <div class="scrub-sticky">
+      <canvas id="scrub-canvas"></canvas>
+      <div style="position:absolute; left:0; right:0; bottom:0; height:10vh; background:linear-gradient(180deg, rgba(253,248,238,0), var(--cream)); pointer-events:none;"></div>
+
+      <div class="scrub-load" id="scrub-load">
+        <div>brewing…</div>
+        <div class="sl-bar"><i id="sl-fill"></i></div>
+      </div>
+
+      <div class="stage c-green" data-from="0" data-to="0.16">
+        <div class="st-kicker">the ritual</div>
+        <h2>one stick.<br>thirty seconds.</h2>
+        <p>scroll to see how your daily glow gets made.</p>
+      </div>
+      <div class="stage c-lime" data-from="0.2" data-to="0.42">
+        <div class="st-kicker">step one</div>
+        <h2>tear.</h2>
+        <p>ceremonial-grade matcha in a single-serve stick — no scale, no scoop, no mess.</p>
+      </div>
+      <div class="stage c-pink" data-from="0.46" data-to="0.7">
+        <div class="st-kicker">step two</div>
+        <h2>pour.</h2>
+        <p>formulated with vitamin C so your daily cup works with your iron — not against it.*</p>
+      </div>
+      <div class="stage c-orange" data-from="0.76" data-to="1">
+        <div class="st-kicker">step three</div>
+        <h2>glow.</h2>
+        <p>smooth L-theanine energy. no jitters, no 2pm crash.</p>
+        <div class="hero-cta">
+          <a href="#wl-end" class="btn btn-pink">join the waitlist →</a>
+        </div>
+      </div>
+
+      <div class="scrub-hint" id="scrub-hint">scroll to make one</div>
+    </div>
+  </section>
+
+  <!-- THE FLAVORS -->
+  <section class="block" style="padding-top: 40px;">
+    <div class="container">
+      <div class="center">
+        <div class="kicker">launching first</div>
+        <h2 class="title">three flagship flavors</h2>
+        <p class="sub" style="margin-bottom: 26px;">Vanilla for the classicists, strawberry for the flirts, coconut for the vacation-minded. Same iron-conscious blend — zero added iron, vitamin C in every stick.</p>
+      </div>
+      <img src="images/flavor-flight.jpg" alt="qt matcha boxes — vanilla, strawberry, and coconut" style="width:100%; max-width:860px; display:block; margin:0 auto; border-radius: var(--radius-lg); box-shadow: var(--shadow);">
+    </div>
+  </section>
+
+  <!-- WHY QT, BRIEFLY -->
+  <section class="block" style="padding-top: 30px;">
+    <div class="container">
+      <div class="benefits wl-benefits">
+        <div class="benefit">
+          <div class="icon">🍊</div>
+          <h3>iron-conscious</h3>
+          <p>Coffee and regular matcha can block iron absorption. qt adds vitamin C so your cup works with your body.*</p>
+        </div>
+        <div class="benefit">
+          <div class="icon">⚡</div>
+          <h3>smooth energy</h3>
+          <p>L-theanine + caffeine for calm, steady focus — no jitters, no 2pm crash.</p>
+        </div>
+        <div class="benefit">
+          <div class="icon">🍵</div>
+          <h3>ceremonial grade</h3>
+          <p>First-harvest, stone-ground, whisked or shaken in thirty seconds flat.</p>
+        </div>
+        <div class="benefit">
+          <div class="icon">💚</div>
+          <h3>clean by default</h3>
+          <p>Vegan, gluten free, no added sugar, nothing artificial. Ever.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CAPTURE -->
+  <section class="newsletter" id="wl-end">
+    <div class="container">
+      <h2>want in on launch day?</h2>
+      <p>Updates and your 15%-off code land in your inbox over the next few weeks. That's the whole deal.</p>
+      <form class="news-form" data-tags="waitlist,landing,footer" data-success="you're in — updates + your 15% code are on the way 🍵">
+        <input type="email" placeholder="your email, qt" required aria-label="Email address">
+        <button type="submit" class="btn">join the waitlist</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="foot-note" style="border-top:none; padding-top:0;">
+        © 2026 qt matcha. all rights reserved. · <a href="index.html" style="text-decoration:underline;">explore the full site</a>
+        <p class="disclaimer">*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      const HD = window.innerWidth > 820;
+      const FRAME_DIR = HD ? 'frames/pour-b-hd' : 'frames/pour-b';
+      const FRAME_COUNT = 72;
+      const canvas = document.getElementById('scrub-canvas');
+      const ctx = canvas.getContext('2d');
+      const section = document.getElementById('scrub');
+      const loadEl = document.getElementById('scrub-load');
+      const fillEl = document.getElementById('sl-fill');
+      const hint = document.getElementById('scrub-hint');
+      const stages = Array.from(document.querySelectorAll('.stage'));
+      const frames = new Array(FRAME_COUNT);
+      let loaded = 0, current = -1, ready = false;
+
+      const pad = (n) => String(n).padStart(4, '0');
+      const src = (i) => FRAME_DIR + '/f' + pad(i + 1) + '.jpg';
+
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = canvas.clientWidth * dpr;
+        canvas.height = canvas.clientHeight * dpr;
+        current = -1; paint();
+      }
+
+      let bgFill = '#FDF8EE';
+      function sampleBg(img) {
+        try {
+          const c = document.createElement('canvas');
+          c.width = c.height = 4;
+          c.getContext('2d').drawImage(img, 0, 0, 12, 12, 0, 0, 4, 4);
+          const d = c.getContext('2d').getImageData(0, 0, 1, 1).data;
+          bgFill = 'rgb(' + d[0] + ',' + d[1] + ',' + d[2] + ')';
+        } catch (e) {}
+      }
+      function draw(img) {
+        const cw = canvas.width, ch = canvas.height;
+        const iw = img.naturalWidth, ih = img.naturalHeight;
+        let s = Math.max(cw / iw, ch / ih);
+        let yBias = 0.5;
+        if (!HD) { s *= 1.35; yBias = 0.72; }
+        const w = iw * s, h = ih * s;
+        ctx.fillStyle = bgFill;
+        ctx.fillRect(0, 0, cw, ch);
+        ctx.drawImage(img, (cw - w) / 2, (ch - h) * yBias, w, h);
+      }
+
+      function progress() {
+        const rect = section.getBoundingClientRect();
+        const total = section.offsetHeight - window.innerHeight;
+        return Math.min(1, Math.max(0, -rect.top / total));
+      }
+
+      function paint() {
+        if (!ready) return;
+        const p = progress();
+        const f = Math.min(FRAME_COUNT - 1, Math.round(p * (FRAME_COUNT - 1)));
+        if (f !== current && frames[f] && frames[f].complete) { draw(frames[f]); current = f; }
+        stages.forEach((el) => {
+          const a = +el.dataset.from, b = +el.dataset.to;
+          el.classList.toggle('on', p >= a && p <= b);
+        });
+        hint.style.opacity = p > 0.04 ? 0 : 0.85;
+      }
+
+      let started = false;
+      function start() {
+        if (started) return; started = true;
+        for (let i = 0; i < FRAME_COUNT; i++) {
+          const img = new Image();
+          img.src = src(i);
+          img.onload = img.onerror = () => {
+            loaded++;
+            fillEl.style.width = Math.round((loaded / FRAME_COUNT) * 100) + '%';
+            if (loaded >= Math.min(12, FRAME_COUNT) && !ready) {
+              ready = true; if (frames[0] && frames[0].complete) sampleBg(frames[0]);
+              loadEl.classList.add('done'); paint();
+            }
+            if (ready) paint();
+          };
+          frames[i] = img;
+        }
+      }
+
+      window.addEventListener('scroll', paint, { passive: true });
+      window.addEventListener('resize', resize);
+      resize(); start();
+    })();
+  </script>
+</body>
+</html>
