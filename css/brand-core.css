@@ -1660,6 +1660,25 @@ body:has(dialog[open]) {
   font-size: 20px;
   margin-bottom: 16px;
 }
+.footer-legal {
+  margin-top: 34px;
+  padding-bottom: 22px;
+  max-width: 820px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #f9f8f1b3;
+}
+.footer-legal p {
+  margin: 0 0 10px;
+}
+.footer-legal a {
+  color: #f9f8f1;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
 .footer-bottom {
   border-top: 1px solid #f9f8f130;
   padding-top: 22px;

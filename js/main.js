@@ -2,7 +2,7 @@
 // Pages with a hard-coded link (index, waitlist, about, faq, shop) are skipped automatically.
 (() => {
   const addPrivacyLink = () => {
-    if (/privacy(\.html)?$/.test(location.pathname)) return;
+    if (typeof location !== 'undefined' && /privacy(\.html)?$/.test(location.pathname)) return;
     document.querySelectorAll('footer .foot-note').forEach((note) => {
       if (note.querySelector('a[href="privacy.html"]')) return;
       const a = document.createElement('a');
