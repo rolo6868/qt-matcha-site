@@ -1,368 +1,272 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>shop qt matcha — build your ritual</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Subscribe & save — QT Matcha</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg?v=lime-qt-square" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=lime-qt-square" />
     <link rel="shortcut icon" href="favicon.ico?v=lime-qt-square" />
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=lime-qt-square" />
-  <meta name="description" content="Build your qt matcha ritual. Pick your format, subscribe & save 15%, skip or cancel anytime.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body class="has-sticky">
-
-  <div class="announce">15% off every order &nbsp;•&nbsp; skip or cancel anytime</div>
-
-  <nav class="nav">
-    <div class="container nav-inner">
-      <a href="index.html" class="logo">qt<span>matcha</span></a>
-      <ul class="nav-links">
-        <li><a href="index.html">home</a></li>
-        <li><a href="shop.html">shop</a></li>
-        <li><a href="science.html">the iron story</a></li>
-        <li><a href="quiz.html">quiz</a></li>
-        <li><a href="faq.html">faq</a></li>
-      </ul>
-      <a href="#buy" class="btn nav-cta">start my ritual</a>
-      <button class="hamburger" aria-label="menu">☰</button>
-    </div>
-  </nav>
-
-  <!-- BUYBOX -->
-  <section class="block" id="buy" style="padding-top:56px;">
-    <div class="container">
-      <div class="center buy-head" style="margin-bottom:44px;">
-        <div class="kicker">the qt shop</div>
-        <h2 class="title">build your ritual</h2>
-        <p class="sub" style="margin-bottom:0;">Pick your flavor, pick your plan. Ceremonial-grade, iron-infused matcha lands on your doorstep before you run out.</p>
+    <meta
+      name="description"
+      content="Subscribe to QT Matcha and save 15% on every delivery. Skip, pause or cancel anytime. Launching with our first batch."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/brand-core.css?v=legal-1" />
+    <script src="js/main.js?v=first-batch-2" defer></script>
+    <script src="js/pages.js?v=1" defer></script>
+    <script src="js/commerce.js?v=1" defer></script>
+    <script src="js/commerce.js?v=1" defer></script>
+  <link rel="stylesheet" href="css/pages.css?v=1" /></head>
+  <body data-disable-popup data-page="subscribe">
+    <svg class="image-filter-definitions" aria-hidden="true" focusable="false" width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="packet-shadow-lift" color-interpolation-filters="sRGB">
+          <feComponentTransfer>
+            <feFuncR type="gamma" amplitude="1" exponent="0.78" offset="0" />
+            <feFuncG type="gamma" amplitude="1" exponent="0.78" offset="0" />
+            <feFuncB type="gamma" amplitude="1" exponent="0.78" offset="0" />
+            <feFuncA type="identity" />
+          </feComponentTransfer>
+        </filter>
+      </defs>
+    </svg>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="announcement">A LITTLE MATCHA. A LOT TO LOVE.</div>
+    <header class="site-header">
+      <a class="wordmark" href="index.html" aria-label="QT Matcha home">qt matcha</a>
+      <nav class="nav-capsule" aria-label="Main navigation">
+        <a class="btn" href="shop.html"
+          >Shop matcha <span aria-hidden="true">→</span></a
+        >
+        <button
+          class="plain bag-trigger"
+          id="bag-open"
+          aria-haspopup="dialog"
+          aria-controls="bag-dialog"
+        >
+          Bag <span id="bag-count" class="count-badge">0</span>
+        </button>
+        <button
+          class="plain menu-trigger"
+          id="menu-toggle"
+          aria-expanded="false"
+          aria-haspopup="dialog"
+          aria-controls="menu"
+        >
+          Menu <span class="menu-lines" aria-hidden="true"></span>
+        </button>
+      </nav>
+    </header>
+    <dialog
+      id="menu"
+      class="side-panel menu-panel"
+      aria-labelledby="menu-title"
+    >
+      <div class="drawer-heading">
+        <p class="wordmark" id="menu-title">Hey, QT.</p>
+        <button class="close-button" id="menu-close" aria-label="Close menu">
+          ×
+        </button>
       </div>
+      <p class="eyebrow">A LITTLE GOOD ENERGY STARTS HERE.</p>
+      <nav aria-label="Explore QT" class="drawer-links">
+        <a href="shop.html"
+          ><span>Find your flavor</span><span aria-hidden="true">↗</span></a
+        >
+        <a href="index.html#ritual"
+          ><span>Your daily ritual</span><span aria-hidden="true">↗</span></a
+        >
+        <a href="index.html#ingredients"
+          ><span>What’s inside</span><span aria-hidden="true">↗</span></a
+        >
+        <a href="index.html#life"
+          ><span>QT in real life</span><span aria-hidden="true">↗</span></a
+        >
+      </nav>
+      <a class="menu-feature" href="shop.html" data-select-flavor="variety"
+        ><img
+          src="images/brand-core/12c63-960.webp"
+          alt=""
+          width="130"
+          height="130"
+          srcset="
+            images/brand-core/12c63-480.webp 480w,
+            images/brand-core/12c63-960.webp 960w
+          "
+          sizes="160px"
+          decoding="async"
+        /><span
+          ><small>CAN’T PICK JUST ONE?</small
+          ><strong>Meet the Variety Pack.</strong
+          ><span>Find your daily QT →</span></span
+        ></a
+      >
+      <a class="menu-club" href="#club"
+        >You’re our kind of QT. <strong>Join the club →</strong></a
+      >
+    </dialog>
+    
+    <main id="main">
 
-      <div class="buybox">
-        <div class="buy-media">
-          <img id="buy-img" src="images/packet-vanilla.jpg" alt="qt matcha traditional vanilla packets box">
-          <div class="trust-marquee">
-            <div class="tm-track">
-              <span class="badge">🌸 4.9 ★ from 1,200+ qts</span>
-              <span class="badge">🍵 ceremonial grade</span>
-              <span class="badge">😌 no jitters, no crash</span>
-              <span class="badge">🍊 vitamin C inside</span>
-              <span class="badge">🌱 vegan + gluten free</span>
-              <span class="badge">✨ 30-day glow guarantee</span>
-              <span class="badge">🚚 free shipping over $40</span>
-              <span class="badge">🌸 4.9 ★ from 1,200+ qts</span>
-              <span class="badge">🍵 ceremonial grade</span>
-              <span class="badge">😌 no jitters, no crash</span>
-              <span class="badge">🍊 vitamin C inside</span>
-              <span class="badge">🌱 vegan + gluten free</span>
-              <span class="badge">✨ 30-day glow guarantee</span>
-              <span class="badge">🚚 free shipping over $40</span>
+      <section class="page-hero lime section-pad">
+        <div class="hero-copy">
+          <p class="crumbs"><a href="index.html">Home</a> / Subscribe &amp; save</p>
+          <p class="eyebrow">COMING WITH OUR FIRST BATCH.</p>
+          <h1>Your daily QT.<br />On autopilot.</h1>
+          <p class="lead">Pick your flavor, pick your rhythm, save 15% on every delivery. Skip, pause, or cancel anytime.</p>
+          <button class="btn" data-signup="variety" data-source="subscribe" aria-haspopup="dialog" aria-controls="bag-dialog">Get first dibs →</button>
+        </div>
+        <div class="hero-media"><img src="images/lifestyle/qt-lifestyle-17-960.webp" srcset="images/lifestyle/qt-lifestyle-17-480.webp 480w, images/lifestyle/qt-lifestyle-17-960.webp 960w" sizes="(max-width: 760px) 92vw, 40vw" alt="White Peach QT beside a bottle ready to mix" width="960" height="1280" fetchpriority="high" /></div>
+      </section>
+      <img class="wave" src="images/brand-core/8eecb.svg" alt="" width="1440" height="64" />
+      <section class="section-pad">
+        <h2 class="center">Two ways to QT.</h2>
+        <p class="flavor-intro center">Same packets, same flavors. Subscribers just pay less and never run out.</p>
+        <div class="plan-grid">
+          <article class="plan">
+            <h3>One-time</h3>
+            <p class="price">$24.79 <small>/ box of 10</small></p>
+            <p>Your full ritual, delivered once. Not sure yet? The 3-packet Taster is $7.99.</p>
+            <ul><li>Three flavors, the Taster, and the Variety Pack</li><li>Free US shipping over $40</li><li>No commitment</li></ul>
+            <a class="btn outline" href="shop.html">Shop one-time →</a>
+          </article>
+          <article class="plan highlight">
+            <span class="badge">Save 15%</span>
+            <h3>Subscribe &amp; save</h3>
+            <p class="price">$21.07 <small>/ box of 10</small><span class="was">$24.79</span></p>
+            <p>Delivered every 2, 4, or 6 weeks. Swap flavors between deliveries. Skip, pause, or cancel in two taps.</p>
+            <ul><li>15% off every delivery, not just the first</li><li>First dibs on new flavors</li><li>Renewal reminder 3 days before every shipment</li></ul>
+            <button class="btn" data-signup="variety" data-source="subscribe" aria-haspopup="dialog" aria-controls="bag-dialog">Notify me at launch →</button>
+          </article>
+        </div>
+        <p class="note">Subscriptions open with our first batch. Joining the list now doesn't charge you anything — it just means you hear first.</p>
+      </section>
+      <section class="section-pad" style="background: var(--pale);">
+        <h2 class="center">Being a regular should come with perks.</h2>
+        <div class="perks">
+          <article class="perk"><img src="images/brand-core/9e85b.svg" alt="" width="54" height="54" /><h3>15% off, always</h3><p>Every delivery, for as long as you subscribe. Not a first-order gimmick.</p></article>
+          <article class="perk"><img src="images/brand-core/f43e6.svg" alt="" width="54" height="54" /><h3>First dibs</h3><p>New flavors and limited runs go to subscribers before anyone else.</p></article>
+          <article class="perk"><img src="images/brand-core/33ceb.svg" alt="" width="54" height="54" /><h3>Total flexibility</h3><p>Skip a delivery, change flavors, pause for a trip, or cancel. No calls, no retention specialist.</p></article>
+        </div>
+      </section>
+      <section class="section-pad">
+        <h2 class="center">How it works.</h2>
+        <div class="steps-grid">
+          <article class="step"><h3>Pick your flavor</h3><p>Strawberry, White Peach, Lemon Yuzu, or the Variety Pack.</p></article>
+          <article class="step"><h3>Pick your rhythm</h3><p>Every 2, 4, or 6 weeks. Change it whenever your routine does.</p></article>
+          <article class="step"><h3>Tear, shake, sip</h3><p>One packet into 8–12 oz of water. Thirty seconds, no whisk.</p></article>
+          <article class="step"><h3>Repeat</h3><p>Your next box lands before you run out. That's the whole idea.</p></article>
+        </div>
+      </section>
+      <section class="section-pad">
+        <div class="faq-wrap">
+          <div class="faq-group"><p class="eyebrow">QUICK QUESTIONS</p><h2>The fine print, in plain English.</h2>
+            <details><summary>When am I charged?</summary><p>On the day your first box ships, then on the same schedule you chose. We email you three days before every renewal so nothing sneaks up on you.</p></details>
+            <details><summary>Can I really cancel anytime?</summary><p>Yes. From your account page, in two taps. You can also skip a delivery or switch flavors instead.</p></details>
+            <details><summary>Can I mix flavors?</summary><p>Yes. Swap the flavor in your next box any time before it ships, or subscribe to the Variety Pack and get all three every time.</p></details>
+          </div>
+        </div>
+      </section>
+
+    </main>
+    <img
+      class="wave tall"
+      src="images/brand-core/24933.svg"
+      alt=""
+      width="1440"
+      height="80"
+    />
+    <footer class="footer section-pad" id="club">
+      <div class="footer-grid">
+        <div class="signup">
+          <h2>You’re our kind of QT.</h2>
+          <p>New flavors, little rituals, and good things ahead.</p>
+          <form
+            class="news-form"
+            data-tags="newsletter,brand-core"
+            data-success="Thanks, QT! Check your inbox for any confirmation email."
+            aria-label="Join the QT club"
+          >
+            <label class="sr-only" for="club-email">Email address</label>
+            <div class="email-field">
+              <input
+                type="email"
+                id="club-email"
+                placeholder="Your email address"
+                autocomplete="email"
+                required
+              /><button type="submit">Join →</button>
             </div>
-          </div>
-        </div>
-
-        <div>
-          <div class="step-label"><span class="n">1</span>pick your flavor</div>
-          <div class="opt-grid" id="format-grid">
-            <label class="opt-card sel" data-price="24" data-was="28" data-name="vanilla" data-img="images/packet-vanilla.jpg">
-              <span class="o-tag">the classic</span>
-              <input type="radio" name="format" checked>
-              <div class="o-name">vanilla</div>
-              <div class="o-sub">10 single-serve sticks</div>
-              <div class="o-price">$24 <s>$28</s></div>
-            </label>
-            <label class="opt-card" data-price="24" data-was="28" data-name="strawberry" data-img="images/packet-strawberry.jpg">
-              <span class="o-tag">bestseller</span>
-              <input type="radio" name="format">
-              <div class="o-name">strawberry</div>
-              <div class="o-sub">10 single-serve sticks</div>
-              <div class="o-price">$24 <s>$28</s></div>
-            </label>
-            <label class="opt-card" data-price="24" data-was="28" data-name="coconut" data-img="images/packet-coconut.jpg">
-              <span class="o-tag">new</span>
-              <input type="radio" name="format">
-              <div class="o-name">coconut</div>
-              <div class="o-sub">10 single-serve sticks</div>
-              <div class="o-price">$24 <s>$28</s></div>
-            </label>
-            <label class="opt-card" style="grid-column: 1 / -1;" data-price="59" data-was="72" data-name="the flavor flight" data-img="images/flavor-flight.jpg">
-              <span class="o-tag">best deal — all three flavors</span>
-              <input type="radio" name="format">
-              <div class="o-name">the flavor flight</div>
-              <div class="o-sub">one box of each — vanilla, strawberry &amp; coconut · 30 sticks total</div>
-              <div class="o-price">$59 <s>$72</s></div>
-            </label>
-          </div>
-          <p style="font-size:0.85rem; font-weight:600; opacity:0.75; margin:6px 0 20px;">the tin &amp; the ready-to-drink cans are coming soon — subscribers get first dibs.</p>
-
-          <div class="step-label"><span class="n">2</span>pick your plan</div>
-          <div class="opt-grid two" id="plan-grid">
-            <label class="opt-card sel" data-plan="one">
-              <input type="radio" name="plan" checked>
-              <div class="o-name">one-time</div>
-              <div class="o-sub">your full ritual, delivered once</div>
-              <div class="o-price" id="one-price">$24</div>
-            </label>
-            <label class="opt-card" data-plan="sub" style="pointer-events:none; opacity:.65;">
-              <span class="o-tag">coming soon — save 15%</span>
-              <input type="radio" name="plan" disabled>
-              <div class="o-name">subscribe &amp; save</div>
-              <div class="o-sub">delivered every 30 days · skip or cancel anytime · launching soon</div>
-              <div class="o-price" id="sub-price">$20.40 / delivery</div>
-            </label>
-          </div>
-
-          <div class="step-label"><span class="n">3</span>how many?</div>
-          <div class="qty-row">
-            <button class="qty-btn" id="qty-minus" aria-label="decrease quantity">−</button>
-            <span class="qty-num" id="qty-num">1</span>
-            <button class="qty-btn" id="qty-plus" aria-label="increase quantity">+</button>
-            <span style="font-size:0.85rem; font-weight:700; color:var(--pink-hot);" id="qty-note"></span>
-          </div>
-
-          <div class="total-line">
-            <div class="t-label">your ritual<br><small id="t-plan-note">subscribed · save 15% every delivery</small></div>
-            <div class="t-price"><s id="t-was">$24.00</s> <span id="t-now">$20.40</span></div>
-          </div>
-
-          <p id="sub-note" style="text-align:center; font-family:var(--font-display); font-weight:700; color:var(--green-deep); margin:0 0 10px; font-size:0.98rem;">subscribe &amp; save — your daily glow, on&nbsp;autopilot&nbsp;🍵</p>
-          <p style="text-align:center; font-family:var(--font-display); font-weight:700; color:var(--pink-hot); margin:0 0 10px; font-size:0.98rem;">our first production run is almost here — waitlist gets first dibs + launch-day perks 🌸</p>
-          <a href="#" class="btn btn-pink big-cta" id="main-cta">join the waitlist →</a>
-          <form id="waitlist-form" class="news-form" style="display:none; margin:0 0 10px;">
-            <input type="email" placeholder="your email, qt" required>
-            <button type="submit" class="btn btn-pink">save my spot 🍵</button>
           </form>
-          <p class="fine">free shipping on orders $40+ · skip, pause, or cancel in two taps · 30-day glow guarantee</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PERKS -->
-  <section class="block" style="background: var(--pink-pale); padding: 70px 0;">
-    <div class="container">
-      <div class="center">
-        <div class="kicker">the qt club</div>
-        <h2 class="title">subscriber perks</h2>
-        <p class="sub">Being a regular should come with benefits.</p>
-      </div>
-      <div class="perks">
-        <div class="perk"><div class="p-ico">💸</div><h3>15% off, always</h3><p>Every delivery, not just the first one.</p></div>
-        <div class="perk"><div class="p-ico">🎁</div><h3>free gifts</h3><p>A whisk in box #3. Surprise merch drops after.</p></div>
-        <div class="perk"><div class="p-ico">🍑</div><h3>first dibs</h3><p>New flavors ship to subscribers two weeks early.</p></div>
-        <div class="perk"><div class="p-ico">🤸</div><h3>total flexibility</h3><p>Skip, pause, swap formats, or cancel anytime.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="block">
-    <div class="container">
-      <div class="center">
-        <div class="kicker">how it works</div>
-        <h2 class="title">three steps to glow</h2>
-      </div>
-      <div class="pour-band">
-        <img src="images/pour-ugc.jpg" alt="pouring a qt matcha stick into iced milk">
-        <div>
-          <ul class="pour-steps">
-            <li><span class="ps-n">01</span><span><b>tear.</b> one stick, anywhere — no scale, no scoop, no mess.</span></li>
-            <li><span class="ps-n">02</span><span><b>pour &amp; shake.</b> into iced milk, water, or a shaker. thirty seconds flat.</span></li>
-            <li><span class="ps-n">03</span><span><b>glow.</b> smooth L-theanine energy that works with your iron, not against it.</span></li>
-            <li><span class="ps-n">04</span><span><b>repeat.</b> your next box lands before you run out. that's the subscription.</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section class="block" style="background: var(--chartreuse-light); padding: 70px 0;">
-    <div class="container">
-      <div class="center">
-        <div class="kicker">qt reviews</div>
-        <h2 class="title">the group chat approves</h2>
-      </div>
-      <div class="testis">
-        <div class="testi"><span class="testi-photo"><img src="images/ugc-3.jpg" alt="qt matcha customer photo"></span><div class="stars">★★★★★</div><p>"I've tried every matcha subscription. This is the first one where I actually feel a difference — no 2pm crash, and my energy is just... steady."</p><div class="who-row"><div class="who">— maya r., subscriber since march</div></div></div>
-        <div class="testi"><span class="testi-photo"><img src="images/ugc-1.jpg" alt="qt matcha customer photo"></span><div class="stars">★★★★★</div><p>"The skip button actually works, which sounds basic but half these brands hide it. Also the packets are so cute I keep them in a jar on my desk."</p><div class="who-row"><div class="who">— dani k., subscriber since january</div></div></div>
-        <div class="testi"><span class="testi-photo"><img src="images/ugc-10.jpg" alt="qt matcha customer photo"></span><div class="stars">★★★★★</div><p>"My doctor flagged low ferritin last year. I switched my daily matcha to qt and I love that it's designed around absorption instead of fighting it."</p><div class="who-row"><div class="who">— priya s., subscriber since june</div></div></div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- FYP UGC BAND -->
-  <section class="block" style="padding: 70px 0 40px;">
-    <div class="container">
-      <div class="center">
-        <div class="kicker">straight off your fyp</div>
-        <h2 class="title">qts in the wild</h2>
-        <p class="sub">18 or 48, dorm desk or porch steps — the ritual fits.</p>
-      </div>
-      <div class="ugc-grid">
-        <img src="images/ugc-1.jpg" alt="cafe lunch with qt matcha">
-        <img src="images/ugc-2.jpg" alt="car sip of qt matcha">
-        <img src="images/ugc-7.jpg" alt="sunlit couch matcha moment">
-        <img src="images/ugc-8.jpg" alt="qt matcha poster in the wild">
-        <img src="images/ugc-3.jpg" alt="post-yoga matcha">
-        <img src="images/ugc-4.jpg" alt="golden hour picnic toast with qt matcha">
-        <img src="images/ugc-5.jpg" alt="qt box cheek hug">
-        <img src="images/ugc-6.jpg" alt="matcha whisking fail — powder on the nose">
-      </div>
-    </div>
-  </section>
-  <!-- GUARANTEE -->
-  <section class="block">
-    <div class="container">
-      <div class="guarantee">
-        <div class="g-badge"><b>30</b>day glow<br>guarantee</div>
-        <div>
-          <h3>love it or it's free</h3>
-          <p>Drink qt daily for 30 days. If you don't feel the difference — smoother energy, no crash, better mornings — reply to any order email and we'll refund your last box. No return label, no interrogation.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="block" style="padding-top: 0;">
-    <div class="container">
-      <div class="center"><h2 class="title">quick questions</h2><p class="sub"></p></div>
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-q">when am I charged?</button>
-          <div class="faq-a"><div class="faq-a-inner">Today for your first box, then every 30 days on the same date. We email you 3 days before each renewal so nothing sneaks up on you.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">can I really cancel anytime?</button>
-          <div class="faq-a"><div class="faq-a-inner">Yes — two taps from your account page, no chat with a "retention specialist" required. You can also skip a month or switch formats instead.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">can I mix formats?</button>
-          <div class="faq-a"><div class="faq-a-inner">Totally. Lots of subscribers run packets + cans together. Add multiple formats above, or swap what's in your box any month.</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <div class="foot-grid">
-        <div>
-          <div class="foot-logo">qt</div>
-          <p style="margin-top:12px; font-size:0.95rem;">feel good from the inside qt.<br>iron-infused matcha to support your energy and glow.</p>
+          <small
+            >By signing up, you agree to receive QT Matcha emails.<br />Unsubscribe
+            anytime.</small
+          >
         </div>
         <div>
-          <h4>shop</h4>
-          <ul>
-            <li><a href="subscribe.html">subscribe &amp; save</a></li>
-            <li><a href="shop.html">shop all</a></li>
-            <li><a href="quiz.html">take the quiz</a></li>
-          </ul>
+          <h3>Shop</h3>
+          <a href="shop.html#strawberry">Strawberry</a><a href="shop.html#peach">White Peach</a><a href="shop.html#yuzu">Lemon Yuzu</a><a href="shop.html#variety">Variety Pack</a><a href="subscribe.html">Subscribe &amp; save</a>
         </div>
         <div>
-          <h4>learn</h4>
-          <ul>
-            <li><a href="science.html">the iron story</a></li>
-            <li><a href="about.html">about us</a></li>
-            <li><a href="faq.html">faq</a></li>
-          </ul>
+          <h3>Learn</h3>
+          <a href="index.html#ritual">Our story</a><a href="index.html#ingredients">Ingredients</a
+          ><a href="index.html#ritual">Your ritual</a><a href="faq.html">FAQs</a>
         </div>
         <div>
-          <h4>connect</h4>
-          <ul>
-            <li><a href="#">instagram @qtmacha</a></li>
-            <li><a href="#">tiktok @qtmacha</a></li>
-            <li><a href="#">hello@drinkqt.com</a></li>
-          </ul>
+          <h3>Connect</h3>
+          <a href="#club">The QT club</a><a href="index.html#life">QT in real life</a>
         </div>
       </div>
-      <div class="foot-note">
-        © 2026 qt matcha. all rights reserved.
-        <p class="disclaimer">*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. If you have or suspect an iron deficiency or any medical condition, consult your healthcare provider.</p>
+      <div class="footer-legal">
+        <p class="disclaimer">
+          *These statements have not been evaluated by the Food and Drug
+          Administration. This product is not intended to diagnose, treat, cure,
+          or prevent any disease. If you have or suspect an iron deficiency or
+          any medical condition, consult your healthcare provider.
+        </p>
+        <p>
+          <a href="privacy.html">Privacy policy</a> ·
+          <a href="mailto:sipqtmatcha@gmail.com">sipqtmatcha@gmail.com</a>
+        </p>
       </div>
-    </div>
-  </footer>
-
-  <!-- mobile sticky cta -->
-  <div class="sticky-cta">
-    <span class="s-price" id="sticky-price">$20.40 / delivery</span>
-    <a href="#buy" class="btn">start my ritual</a>
-  </div>
-
-  <script src="js/main.js"></script>
-  <script>
-    // buybox pricing
-    const state = { price: 24, was: 28, plan: 'one', qty: 1, name: 'vanilla' };
-    const fmt = (n) => '$' + n.toFixed(2);
-
-    // shopify checkout — cart permalinks per variant
-    const SHOP = 'https://jpx1pk-fk.myshopify.com';
-    const VARIANTS = {
-      'vanilla': '67375152431408',
-      'strawberry': '67375154594096',
-      'coconut': '67375158100272',
-      'the flavor flight': '67375159247152'
-    };
-
-    function render() {
-      const sub = state.price * 0.85;
-      document.getElementById('sub-price').textContent = fmt(sub) + ' / delivery';
-      document.getElementById('one-price').textContent = fmt(state.price);
-      const unit = state.plan === 'sub' ? sub : state.price;
-      const total = unit * state.qty;
-      const wasTotal = state.price * state.qty;
-      document.getElementById('t-now').textContent = fmt(total);
-      const wasEl = document.getElementById('t-was');
-      wasEl.style.display = state.plan === 'sub' ? '' : 'none';
-      wasEl.textContent = fmt(wasTotal);
-      document.getElementById('t-plan-note').textContent =
-        state.plan === 'sub' ? 'subscribed · save 15% every delivery' : 'one-time purchase';
-      document.getElementById('sub-note').style.display = state.plan === 'sub' ? '' : 'none';
-      document.getElementById('qty-num').textContent = state.qty;
-      document.getElementById('qty-note').textContent = total >= 40 ? '✓ free shipping unlocked' : '';
-      document.getElementById('sticky-price').textContent = fmt(total) + (state.plan === 'sub' ? ' / delivery' : '');
-      document.getElementById('main-cta').textContent =
-        'join the waitlist — ' + fmt(total) + ' at launch 🍵';
-    }
-
-    document.querySelectorAll('#format-grid .opt-card').forEach((card) => {
-      card.addEventListener('click', () => {
-        document.querySelectorAll('#format-grid .opt-card').forEach((c) => c.classList.remove('sel'));
-        card.classList.add('sel');
-        state.price = parseFloat(card.dataset.price);
-        state.name = card.dataset.name;
-        document.getElementById('buy-img').src = card.dataset.img;
-        render();
-      });
-    });
-
-    document.querySelectorAll('#plan-grid .opt-card').forEach((card) => {
-      card.addEventListener('click', () => {
-        document.querySelectorAll('#plan-grid .opt-card').forEach((c) => c.classList.remove('sel'));
-        card.classList.add('sel');
-        state.plan = card.dataset.plan;
-        render();
-      });
-    });
-
-    document.getElementById('qty-plus').addEventListener('click', () => { state.qty = Math.min(6, state.qty + 1); render(); });
-    document.getElementById('qty-minus').addEventListener('click', () => { state.qty = Math.max(1, state.qty - 1); render(); });
-
-    // launch mode: waitlist (checkout wiring stays for launch day — see VARIANTS above)
-    document.getElementById('main-cta').addEventListener('click', (e) => {
-      e.preventDefault();
-      e.target.style.display = 'none';
-      const wf = document.getElementById('waitlist-form');
-      wf.style.display = 'flex';
-      wf.querySelector('input[type="email"]').focus();
-    });
-
-    render();
-  </script>
-</body>
+      <div class="footer-bottom">
+        <p>© <span id="year">2026</span> QT Matcha · First Harvest Matcha LLC</p>
+        <p>Matcha that loves you back.</p>
+        <a href="#main">Back to top ↑</a>
+      </div>
+    </footer>
+    
+    <dialog id="bag-dialog" class="stock-dialog" aria-labelledby="bag-title" aria-describedby="stock-description">
+      <button class="close-button" id="bag-close" aria-label="Close notification signup">×</button>
+      <div class="stock-art" aria-hidden="true"><span class="stock-spark stock-spark-one">✦</span><img id="stock-packet" src="images/brand-core/12c63-480.webp" alt="" width="260" height="170" /><span class="stock-spark stock-spark-two"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M5.6 18.4L18.4 5.6"/></svg></span><span class="stock-art-caption">A LITTLE MATCHA. A LOT TO LOVE.</span></div>
+      <div class="stock-content">
+      <p class="eyebrow">YOUR DAILY QT IS ON ITS WAY.</p>
+      <h2 id="bag-title">Get the first sip.</h2>
+      <p id="stock-description">Our first batch is being made. Enter your email and we’ll let you know when QT Matcha is in stock.</p>
+      <p class="stock-flavor" id="stock-flavor"></p>
+      <form class="news-form stock-form" data-success-template="stock-success-template" data-tags="waitlist,first-batch,brand-core" data-success="Thanks, QT! Check your inbox and confirm your signup if prompted. We’ll email you when our first batch is in stock.">
+        <label for="stock-email">Email address</label>
+        <input id="stock-email" name="email" type="email" placeholder="Your email address" autocomplete="email" required autofocus />
+        <button type="submit" class="btn full">Notify me →</button>
+      </form>
+      <p class="stock-consent">By signing up, you agree to receive QT Matcha emails. Unsubscribe anytime.</p>
+      <p class="stock-fine">A little heads-up when we’re ready. No payment or reservation.</p>
+      </div>
+    </dialog>
+<template id="stock-success-template">
+      <div class="stock-success-card" role="status" tabindex="-1">
+        <span class="stock-success-icon" aria-hidden="true">✓</span>
+        <h3>One little inbox check.</h3>
+        <p>If we send a confirmation email, tap the link to finish signing up. We’ll let you know when our first batch is ready to shop.</p>
+      </div>
+      <button type="button" class="btn full" data-stock-dismiss>Keep exploring →</button>
+    </template>
+  </body>
 </html>
