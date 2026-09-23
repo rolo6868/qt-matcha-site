@@ -20,7 +20,7 @@
       <img src="images/brand-core/7036c-480.webp" alt="" width="150" height="118" />
       <p class="eyebrow">FIRST TIME HERE? WE POURED YOU ONE.</p>
       <h2 id="intro-title">Get first dibs<br />on the first batch.</h2>
-      <p>Fruit-forward matcha with iron, vitamin C, and collagen. Join the list and you'll hear the moment it's in stock, plus 15% off your first order.</p>
+      <p>Fruit-forward matcha with iron, vitamin C, and collagen. Hear the moment it's in stock, plus 15% off your first order.</p>
       <form class="news-form intro-form" data-tags="waitlist,first-batch,intro" data-success="You're in, QT. Watch your inbox for the first pour.">
         <label for="intro-email">Email address</label>
         <input id="intro-email" name="email" type="email" placeholder="Your email address" autocomplete="email" required />

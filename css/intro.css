@@ -76,4 +76,18 @@
   .qt-intro .pour-liquid, .qt-intro .pour-stream, .qt-intro .intro-card { transition: none; }
   .qt-intro .pour-wave, .qt-intro .bubble { animation: none; }
 }
-@media (max-width: 480px) { .qt-intro .intro-card { padding: 28px 20px 22px; } .qt-intro .intro-card img { width: 120px; } }
+.qt-intro .intro-card { max-height: calc(100dvh - 32px); overflow-y: auto; }
+@media (max-width: 480px) {
+  .qt-intro { padding: 16px; }
+  .qt-intro .intro-card { padding: 22px 18px 16px; border-radius: 22px; }
+  .qt-intro .intro-card img { width: 86px; margin: -4px auto 2px; }
+  .qt-intro .intro-card .eyebrow { font-size: 10px; margin-bottom: 6px; }
+  .qt-intro .intro-card h2 { font-size: 30px; margin-bottom: 8px; }
+  .qt-intro .intro-card p { font-size: 15px; }
+  .qt-intro .intro-form { margin-top: 14px; gap: 8px; }
+  .qt-intro .intro-form input { padding: 13px 16px; }
+  .qt-intro .intro-form .btn { min-height: 50px; padding: 12px 20px; }
+  .qt-intro .intro-fine { margin-top: 8px; font-size: 11px; }
+  .qt-intro .intro-skip { margin-top: 6px; }
+}
+@media (max-height: 600px) and (max-width: 480px) { .qt-intro .intro-card img { display: none; } }
