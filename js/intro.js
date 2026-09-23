@@ -4,7 +4,8 @@
   const KEY = "qt_intro_seen";
   const page = (location.pathname.split("/").pop() || "index.html").replace(/\.html$/, "") || "index";
   if (["waitlist", "packaging", "privacy", "terms", "accessibility", "404", "contact"].includes(page)) return;
-  try { if (localStorage.getItem(KEY)) return; } catch { /* storage blocked: show once this load */ }
+  const force = /[?&]intro=1/.test(location.search);
+  try { if (!force && localStorage.getItem(KEY)) return; } catch { /* storage blocked: show once this load */ }
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const el = document.createElement("div");
@@ -13,7 +14,7 @@
   el.innerHTML = `
     <div class="pour-stream" aria-hidden="true"></div>
     <div class="pour-liquid" aria-hidden="true"><div class="pour-wave"></div><div class="pour-wave two"></div>
-      ${Array.from({length: 9}, (_, i) => `<span class="bubble" style="left:${8 + i * 10.5}%;animation-delay:${(i * 0.37) % 2.4}s;width:${6 + (i % 3) * 4}px;height:${6 + (i % 3) * 4}px"></span>`).join("")}
+      ${Array.from({length: 26}, (_, i) => { const sz = 5 + ((i * 7) % 12); const dur = 2.4 + ((i * 13) % 21) / 10; return `<span class="bubble" style="left:${3 + ((i * 37) % 94)}%;animation-delay:${((i * 0.29) % 2.6).toFixed(2)}s;animation-duration:${dur.toFixed(2)}s;width:${sz}px;height:${sz}px"></span>`; }).join("")}
     </div>
     <div class="intro-card">
       <button class="close-button" type="button" aria-label="Close" data-intro-close>×</button>
@@ -36,11 +37,14 @@
   function open() {
     el.hidden = false; lastFocus = document.activeElement;
     document.documentElement.style.overflow = "hidden";
-    requestAnimationFrame(() => {
+    // Force a style/layout pass with the liquid at height 0 before the class flips, so the height
+    // transition actually runs (Safari otherwise jumps straight to full when unhiding + changing state in one frame).
+    void el.querySelector(".pour-liquid").offsetHeight;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
       if (reduce) { el.classList.add("is-pouring", "is-full"); focusCard(); return; }
       el.classList.add("is-pouring");
-      setTimeout(() => { el.classList.add("is-full"); focusCard(); }, 2150);
-    });
+      setTimeout(() => { el.classList.add("is-full"); focusCard(); }, 2600);
+    }));
   }
   function focusCard() { setTimeout(() => el.querySelector("#intro-email")?.focus({ preventScroll: true }), 350); }
   function close() {

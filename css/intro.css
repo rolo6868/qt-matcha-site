@@ -11,10 +11,10 @@
   position: absolute; left: -10%; right: -10%; bottom: 0;
   height: 0;
   background: linear-gradient(180deg, #9ec93f 0%, #6fa233 35%, #4f8a2b 100%);
-  transition: height 2.3s cubic-bezier(.42,0,.45,1);
+  transition: height 2.7s cubic-bezier(.42,0,.45,1);
   will-change: height;
 }
-.qt-intro.is-pouring .pour-liquid { height: 120%; }
+.qt-intro.is-pouring .pour-liquid { height: 100%; }
 .qt-intro.is-draining .pour-liquid { transition: height .9s cubic-bezier(.6,0,.9,.6); height: 0; }
 /* wavy surface: two layered waves drifting sideways */
 .qt-intro .pour-wave {
@@ -42,11 +42,12 @@
 /* bubbles */
 .qt-intro .bubble {
   position: absolute; bottom: -20px; width: 10px; height: 10px; border-radius: 50%;
-  background: #e6f5b8; opacity: 0; animation: qt-bubble 3.4s ease-in infinite;
+  background: radial-gradient(circle at 35% 35%, #ffffffee, #e6f5b8aa 60%, #cfe98a55);
+  box-shadow: inset -1px -1px 2px #ffffff80;
+  opacity: 0; animation: qt-bubble 3.4s ease-in infinite; animation-play-state: paused;
 }
-.qt-intro.is-full .bubble { opacity: .7; }
-@keyframes qt-bubble { 0% { transform: translateY(0) scale(.6); opacity: 0; } 20% { opacity: .7; } 100% { transform: translateY(-70vh) scale(1.1); opacity: 0; } }
-
+.qt-intro.is-pouring .bubble { animation-play-state: running; }
+@keyframes qt-bubble { 0% { transform: translateY(0) translateX(0) scale(.5); opacity: 0; } 15% { opacity: .85; } 50% { transform: translateY(-45vh) translateX(6px) scale(.95); } 100% { transform: translateY(-96vh) translateX(-4px) scale(1.15); opacity: 0; } }
 /* the card */
 .qt-intro .intro-card {
   position: relative; z-index: 2;

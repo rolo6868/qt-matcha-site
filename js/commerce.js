@@ -13,7 +13,7 @@
     peach:      { id: 67375158100272, price: 24.79, label: "White Peach · 10 packets" },
     yuzu:       { id: 67375152431408, price: 24.79, label: "Lemon Yuzu · 10 packets" },
     taster:     { id: 67835222327600, price: 7.99,  label: "The Taster · 3 packets" },
-    variety:    { id: 67375159247152, price: 59.00, label: "Variety Pack · 30 packets" },
+    variety:    { id: 67375159247152, price: 70.64, label: "Variety Pack · 30 packets" },
   };
   const checkoutUrl = (key, qty) => `${SHOP}/cart/${VARIANTS[key].id}:${Math.max(1, qty | 0)}`;
 
