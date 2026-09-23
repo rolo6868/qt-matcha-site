@@ -18,10 +18,10 @@
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/brand-core.css?v=legal-1" />
+    <link rel="stylesheet" href="css/brand-core.css?v=pricing-1" />
     <script src="js/main.js?v=first-batch-2" defer></script>
     <script src="js/brand-core.js?v=lifestyle-1" defer></script>
-    <script src="js/commerce.js?v=1" defer></script>
+    <script src="js/commerce.js?v=2" defer></script>
   <link rel="stylesheet" href="css/packet-motion.css?v=3"><script src="js/packet-motion.js?v=1" defer></script></head>
   <body data-disable-popup>
     <!-- Lift baked-in shadows on packet renders without changing their artwork or alpha. -->
@@ -208,6 +208,7 @@
             /></a>
             <h3>Strawberry</h3>
             <p>Bright strawberry flavor meets real matcha.</p>
+            <p class="card-price">$24.79 · 10 packets</p>
             <a
               class="btn small"
               href="#choose-flavor"
@@ -236,6 +237,7 @@
             /></a>
             <h3>White Peach</h3>
             <p>Soft, juicy peach flavor meets real matcha.</p>
+            <p class="card-price">$24.79 · 10 packets</p>
             <a
               class="btn small"
               href="#choose-flavor"
@@ -264,6 +266,7 @@
             /></a>
             <h3>Lemon Yuzu</h3>
             <p>Bright lemon-yuzu flavor meets real matcha.</p>
+            <p class="card-price">$24.79 · 10 packets</p>
             <a class="btn small" href="#choose-flavor" data-select-flavor="yuzu"
               >Shop Lemon Yuzu →</a
             >
@@ -294,6 +297,7 @@
             </span>
             <h3>Variety Pack</h3>
             <p>Try all three. Find your daily favorite.</p>
+            <p class="card-price">$59 · 30 packets</p>
             <a
               class="btn small"
               href="#choose-flavor"
@@ -711,10 +715,16 @@
                 </button>
               </div>
             </div>
-            <!-- Shopify: render prices, pack size, selling plans, shipping and returns only after terms are confirmed. -->
+            <p class="buy-price" aria-live="polite">
+              <span id="buy-price">$24.79</span>
+              <span class="buy-per" id="buy-per">10 packets · $2.48 each</span>
+            </p>
             <button class="btn full" id="add-to-bag" aria-haspopup="dialog" aria-controls="bag-dialog">Add to bag →</button>
             <p class="preview-note">
               Coming soon. Explore your favorites while we get ready.
+            </p>
+            <p class="taster-link">
+              Just want to try it? <a href="shop.html#taster">The Taster — one packet of each flavor, $7.99 →</a>
             </p>
             <p class="sr-only" id="cart-status" role="status"></p>
             <div class="product-faq" id="nutrition">

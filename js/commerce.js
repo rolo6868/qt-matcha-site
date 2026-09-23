@@ -19,6 +19,25 @@
 
   window.qtCommerce = { CHECKOUT_ENABLED, VARIANTS, checkoutUrl };
   document.documentElement.dataset.checkout = CHECKOUT_ENABLED ? "on" : "off";
+
+  // Homepage buy box: live price for the selected flavor (runs whether or not checkout is on).
+  const PACKS = { strawberry: 10, peach: 10, yuzu: 10, taster: 3, variety: 30 };
+  const money = (n) => "$" + (Number.isInteger(n) ? n.toFixed(0) : n.toFixed(2));
+  const priceEl = document.getElementById("buy-price");
+  const perEl = document.getElementById("buy-per");
+  function renderPrice() {
+    const key = document.querySelector("input[name=flavor]:checked")?.value;
+    const v = VARIANTS[key]; if (!v || !priceEl) return;
+    const qty = Math.max(1, Number(document.getElementById("quantity")?.value || 1));
+    priceEl.textContent = money(v.price * qty);
+    if (perEl) perEl.textContent = `${PACKS[key]} packets · $${(v.price / PACKS[key]).toFixed(2)} each` + (qty > 1 ? ` · ×${qty}` : "");
+  }
+  if (priceEl) {
+    document.querySelectorAll("input[name=flavor]").forEach((i) => i.addEventListener("change", renderPrice));
+    document.getElementById("quantity")?.addEventListener("input", renderPrice);
+    ["quantity-minus", "quantity-plus"].forEach((id) => document.getElementById(id)?.addEventListener("click", () => setTimeout(renderPrice, 0)));
+    renderPrice();
+  }
   if (!CHECKOUT_ENABLED) return;
 
   // Homepage buy box: flavor radios + quantity stepper.

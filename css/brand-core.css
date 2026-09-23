@@ -2327,3 +2327,11 @@ img:is([src*="brand-core/7036c-"], [src*="brand-core/93690-"], [src*="brand-core
 .ritual-grid img.ritual-lifestyle { object-position:50% 56%; }
 .closing > img.closing-lifestyle { height:auto; aspect-ratio:1.05; object-fit:cover; object-position:50% 50%; border-radius:24px; }
 @media(max-width:760px){ .closing > img.closing-lifestyle { max-height:none; aspect-ratio:1.1; border-radius:22px; } }
+
+/* Homepage pricing (2026-09-23) */
+.card-price { font-family: var(--font-display); font-weight: 700; font-size: 18px; margin: 4px 0 8px; }
+.buy-price { display: flex; align-items: baseline; gap: 12px; margin: 6px 0 14px; }
+.buy-price #buy-price { font-family: var(--font-display); font-weight: 700; font-size: 34px; line-height: 1; margin-left: 0; color: var(--ink); }
+.buy-price .buy-per { font-size: 14px; color: #2e4b21b3; }
+.taster-link { font-size: 14px; margin: 10px 0 0; }
+.taster-link a { text-decoration: underline; text-underline-offset: 3px; font-weight: 600; }
