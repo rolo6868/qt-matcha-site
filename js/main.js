@@ -26,7 +26,6 @@
     addPrivacyLink();
   }
 })();
-
 // qt matcha — shared interactions
 
 // mobile nav
@@ -86,6 +85,7 @@ document.querySelectorAll('.faq-q').forEach((btn) => {
       return fetch('https://a.klaviyo.com/client/subscriptions/?company_id=' +
         encodeURIComponent(CAPTURE.klaviyoCompanyId), {
         method: 'POST',
+        signal: AbortSignal.timeout(15000),
         headers: { 'Content-Type': 'application/json', 'revision': '2024-10-15' },
         body: JSON.stringify({
           data: {
@@ -126,7 +126,7 @@ document.querySelectorAll('.faq-q').forEach((btn) => {
   // Klaviyo capture configured + verified (202 from the client API on 2026-07-17).
   const POPUP_ENABLED = true;
   const onSubscribePage = !!document.getElementById('waitlist-form');
-  if (POPUP_ENABLED && !onSubscribePage) buildPopup();
+  if (POPUP_ENABLED && !onSubscribePage && !document.body.hasAttribute('data-disable-popup')) buildPopup();
 
   function buildPopup() {
     const style = document.createElement('style');
@@ -221,13 +221,13 @@ document.querySelectorAll('.faq-q').forEach((btn) => {
   document.querySelectorAll('.news-form').forEach((form) => {
     const emailInput = form.querySelector('input[type="email"]');
     if (!emailInput) return;
-    const source = form.dataset.tags || 'newsletter,waitlist';
     const success = form.dataset.success || "you’re on the list — welcome to the qt club! 🍵";
 
     let note = null;
     function showNote(msg) {
       if (!note) {
         note = document.createElement('p');
+        note.setAttribute('role', 'status');
         note.style.cssText = 'font-family:var(--font-body);font-weight:600;font-size:.85rem;color:var(--pink-hot);margin:8px 0 0;';
         form.appendChild(note);
       }
@@ -237,16 +237,33 @@ document.querySelectorAll('.faq-q').forEach((btn) => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const email = emailInput.value.trim();
-      if (!email) return;
+      if (!email || !form.reportValidity() || form.dataset.submitting === 'true') return;
+      const source = form.dataset.tags || 'newsletter,waitlist';
+      form.dataset.submitting = 'true';
+      form.setAttribute('aria-busy', 'true');
       const btn = form.querySelector('button[type="submit"], button:not([type])');
       const btnLabel = btn ? btn.textContent : '';
       if (btn) { btn.disabled = true; btn.textContent = 'adding you…'; }
 
       subscribe(email, source).then((ok) => {
+        delete form.dataset.submitting;
+        form.removeAttribute('aria-busy');
         if (ok) {
           // confirmation ONLY on a verified accept from the provider
           form.dispatchEvent(new Event('qt:subscribed'));
-          form.innerHTML = '<p style="font-family:var(--font-display);font-weight:700;font-size:1.2rem;color:var(--green-dark);">' + success + '</p>';
+          const template = form.dataset.successTemplate && document.getElementById(form.dataset.successTemplate);
+          if (template) {
+            form.replaceChildren(template.content.cloneNode(true));
+            form.querySelector('[role="status"]').focus();
+            return;
+          }
+          const confirmation = document.createElement('p');
+          confirmation.className = 'signup-success';
+          confirmation.setAttribute('role', 'status');
+          confirmation.tabIndex = -1;
+          confirmation.textContent = success;
+          form.replaceChildren(confirmation);
+          confirmation.focus();
         } else {
           if (btn) { btn.disabled = false; btn.textContent = btnLabel; }
           showNote(configured
