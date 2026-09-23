@@ -1,0 +1,24 @@
+# Legacy pages from the July build — retired 2026-09-23. Old copy (vanilla/coconut, "vegan", invented reviews) must not be reachable.
+/about            /                  301
+/about.html       /                  301
+/science          /#ingredients      301
+/science.html     /#ingredients      301
+/quiz             /shop              301
+/quiz.html        /shop              301
+/glow             /                  301
+/glow.html        /                  301
+/home-a           /                  301
+/home-a.html      /                  301
+/home-b           /                  301
+/home-b.html      /                  301
+/home-c           /                  301
+/home-c.html      /                  301
+/packet-concept   /                  301
+/packet-concept.html /               301
+# Legacy .html spellings of live pages → clean URLs
+/shop.html        /shop              301
+/faq.html         /faq               301
+/subscribe.html   /subscribe         301
+/waitlist.html    /waitlist          301
+/privacy.html     /privacy           301
+/index.html       /                  301
