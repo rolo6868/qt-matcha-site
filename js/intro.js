@@ -32,22 +32,48 @@
   document.body.appendChild(el);
   let lastFocus = null;
   let stopPour = null;
+  // Scroll lock that also holds on iOS Safari (overflow:hidden alone doesn't): pin the body at the current offset.
+  let lockY = 0;
+  function lock() {
+    lockY = window.scrollY || 0;
+    document.documentElement.style.overflow = "hidden";
+    Object.assign(document.body.style, { position: "fixed", top: `-${lockY}px`, left: "0", right: "0", width: "100%" });
+  }
+  function unlock() {
+    document.documentElement.style.overflow = "";
+    Object.assign(document.body.style, { position: "", top: "", left: "", right: "", width: "" });
+    window.scrollTo(0, lockY);
+  }
   function open() {
     el.hidden = false; lastFocus = document.activeElement;
-    document.documentElement.style.overflow = "hidden";
+    lock();
     const canvas = el.querySelector(".pour-canvas");
     const finish = () => { el.classList.add("is-full"); focusCard(); };
     if (reduce || !window.qtPour) { el.classList.add("is-pouring"); finish(); return; }
+    const canvasPour = () => { stopPour = window.qtPour.start(canvas, { duration: 2700, onFull: finish }); };
     setTimeout(() => {
       el.classList.add("is-pouring");
-      stopPour = window.qtPour.start(canvas, { duration: 2700, onFull: finish });
+      // Desktop: pre-rendered fluid-sim pour (video + WebGL). Falls back to the 2D canvas pour if it
+      // can't load within a couple of seconds, or on phones / slow connections / reduced motion.
+      if (window.qtPourVideo?.supported()) {
+        let fellBack = false;
+        const stopVideo = window.qtPourVideo.start(canvas, {
+          src: "video/pour-stacked.mp4", fullAt: 2.55, onFull: finish,
+          onFail: () => { if (fellBack) return; fellBack = true; const c2 = canvas.cloneNode(); canvas.replaceWith(c2); stopPour = window.qtPour.start(c2, { duration: 2700, onFull: finish }); }
+        });
+        if (!fellBack) stopPour = stopVideo;
+      } else canvasPour();
     }, 60);
   }
-  function focusCard() { setTimeout(() => el.querySelector("#intro-email")?.focus({ preventScroll: true }), 350); }
+  // Touch devices: focus the dialog itself, not the input — auto-focusing an input pops the keyboard,
+  // which shrinks the viewport and shoves the card off-centre / behind the keyboard on iOS.
+  const touch = matchMedia("(hover: none) and (pointer: coarse)").matches;
+  el.tabIndex = -1;
+  function focusCard() { setTimeout(() => (touch ? el : el.querySelector("#intro-email"))?.focus({ preventScroll: true }), 350); }
   function close() {
     try { localStorage.setItem(KEY, String(Date.now())); } catch {}
     el.classList.remove("is-full"); el.classList.add("is-draining");
-    const done = () => { stopPour?.(); el.hidden = true; document.documentElement.style.overflow = ""; lastFocus?.focus?.(); el.remove(); };
+    const done = () => { stopPour?.(); el.hidden = true; unlock(); lastFocus?.focus?.(); el.remove(); };
     reduce ? done() : setTimeout(done, 950);
   }
   el.addEventListener("click", (e) => { if (e.target.closest("[data-intro-close]")) close(); });

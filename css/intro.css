@@ -1,20 +1,24 @@
 /* First-visit "pour" intro. Shown once per browser (localStorage qt_intro_seen). */
 .qt-intro {
   position: fixed; inset: 0; z-index: 200;
-  display: grid; place-items: center;
+  height: 100dvh;
+  display: flex; flex-direction: column; align-items: center;
   padding: 24px;
   background: transparent;
-  overflow: hidden;
+  overflow-y: auto; overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 .qt-intro[hidden] { display: none !important; }
 .qt-intro .pour-canvas {
-  position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+  position: fixed; inset: 0; width: 100%; height: 100dvh; display: block;
   transition: transform .9s cubic-bezier(.6,0,.9,.6), opacity .9s ease;
 }
 .qt-intro.is-draining .pour-canvas { transform: translateY(100%); opacity: .9; }
 /* the card */
 .qt-intro .intro-card {
   position: relative; z-index: 2;
+  margin: auto; flex: none;               /* safe centering: scrolls instead of clipping when taller than the viewport */
   width: min(520px, 100%);
   background: var(--cream); color: var(--ink);
   border-radius: 28px; padding: 34px 30px 26px;
@@ -40,7 +44,6 @@
 @media (prefers-reduced-motion: reduce) {
   .qt-intro .pour-canvas, .qt-intro .intro-card { transition: none; }
 }
-.qt-intro .intro-card { max-height: calc(100dvh - 32px); overflow-y: auto; }
 @media (max-width: 480px) {
   .qt-intro { padding: 16px; }
   .qt-intro .intro-card { padding: 22px 18px 16px; border-radius: 22px; }
