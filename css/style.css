@@ -722,3 +722,13 @@ footer {
 @media (max-width: 560px) {
   .ugc-grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* a11y (2026-09-23) */
+.kicker { color: #b8236e; }
+.legal-box a, .legal a, p a[href^="mailto"], li a[target="_blank"] { color: #234f20; text-decoration: underline; }
+.legal-dates { color: #4a5f45; }
+.disclaimer { opacity: 1; color: #d7e3d0; }
+.btn-pink { background: #234f20; border-color: #234f20; color: #fff; }
+.btn-pink:hover { background: #b8236e; border-color: #b8236e; }
+.legal-dates, .legal-dates * { color: #3e5734 !important; }
+a[href^="mailto"], .legal a, .legal-box a, li a[target="_blank"], p a[target="_blank"] { color: #234f20 !important; text-decoration: underline; }

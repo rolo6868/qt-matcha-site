@@ -11,7 +11,7 @@
   <meta name="description" content="qt matcha launches in a few weeks — ceremonial-grade, iron-infused matcha in three flagship flavors. Join the waitlist for launch updates and 15% off your first order.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=a11y-2">
   <style>
     /* ---- waitlist hero ---- */
     .wl-hero { background: linear-gradient(160deg, var(--pink-pale) 0%, var(--cream) 90%); text-align: center; padding: 44px 0 54px; }
@@ -78,7 +78,7 @@
 </head>
 <body>
 
-  <div class="announce">first production run — arriving in a few weeks 🍵</div>
+  <div class="announce" role="region" aria-label="Announcement">first production run — arriving in a few weeks 🍵</div>
 
   <!-- minimal nav: logo only, no exits -->
   <nav class="nav">
@@ -100,6 +100,7 @@
       <p class="wl-fine">Nothing to buy yet — just first dibs, launch updates, and your discount. No spam, ever.</p>
     </div>
   </header>
+<main id="main">
 
   <!-- SCROLL-SCRUB: the pour -->
   <section class="scrub" id="scrub">
@@ -192,7 +193,8 @@
     </div>
   </section>
 
-  <footer>
+  </main>
+<footer>
     <div class="container">
       <div class="foot-note" style="border-top:none; padding-top:0;">
         © 2026 qt matcha. all rights reserved. · <a href="index.html" style="text-decoration:underline;">explore the full site</a> · <a href="privacy.html" style="text-decoration:underline;">privacy policy</a>

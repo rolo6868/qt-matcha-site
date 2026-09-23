@@ -40,3 +40,32 @@
   dialog?.addEventListener("click", (e) => { if (e.target.closest("[data-stock-dismiss]")) dialog.close(); });
   $(".stock-form")?.addEventListener("qt:subscribed", () => dialog.classList.add("is-subscribed"));
 })();
+
+// Contact form. Set FORM_ENDPOINT to a form backend (e.g. https://formspree.io/f/XXXX or a Web3Forms key URL)
+// to post silently. Until then the form composes an email in the visitor's mail app with everything pre-filled.
+(() => {
+  const FORM_ENDPOINT = "";
+  const form = document.getElementById("contact-form");
+  if (!form) return;
+  const status = form.querySelector(".form-status");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    status.classList.remove("error");
+    if (!form.reportValidity()) { status.textContent = "Please fill in your name, email, and a message."; status.classList.add("error"); return; }
+    const d = Object.fromEntries(new FormData(form).entries());
+    if (FORM_ENDPOINT) {
+      const btn = form.querySelector("button[type=submit]"); btn.disabled = true; status.textContent = "Sending…";
+      try {
+        const r = await fetch(FORM_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(d) });
+        if (!r.ok) throw new Error(String(r.status));
+        form.replaceChildren(Object.assign(document.createElement("p"), { className: "signup-success", textContent: "Thanks, QT! Your note is on its way. We'll reply from sipqtmatcha@gmail.com.", tabIndex: -1 }));
+        form.firstChild.focus();
+      } catch { btn.disabled = false; status.textContent = "That didn't send. Please email us at sipqtmatcha@gmail.com."; status.classList.add("error"); }
+      return;
+    }
+    const subject = encodeURIComponent(`[${d.topic}] from ${d.name}`);
+    const body = encodeURIComponent(`${d.message}\n\n— ${d.name}\n${d.email}`);
+    location.href = `mailto:sipqtmatcha@gmail.com?subject=${subject}&body=${body}`;
+    status.textContent = "Opening your email app with your note filled in. If nothing opened, email sipqtmatcha@gmail.com directly.";
+  });
+})();

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /packaging
+Disallow: /packaging.html
+Sitemap: https://qtmatcha.com/sitemap.xml
