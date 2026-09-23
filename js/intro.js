@@ -12,10 +12,7 @@
   el.className = "qt-intro"; el.setAttribute("role", "dialog"); el.setAttribute("aria-modal", "true");
   el.setAttribute("aria-labelledby", "intro-title"); el.hidden = true;
   el.innerHTML = `
-    <div class="pour-stream" aria-hidden="true"></div>
-    <div class="pour-liquid" aria-hidden="true"><div class="pour-wave"></div><div class="pour-wave two"></div>
-      ${Array.from({length: 26}, (_, i) => { const sz = 5 + ((i * 7) % 12); const dur = 2.4 + ((i * 13) % 21) / 10; return `<span class="bubble" style="left:${3 + ((i * 37) % 94)}%;animation-delay:${((i * 0.29) % 2.6).toFixed(2)}s;animation-duration:${dur.toFixed(2)}s;width:${sz}px;height:${sz}px"></span>`; }).join("")}
-    </div>
+    <canvas class="pour-canvas" aria-hidden="true"></canvas>
     <div class="intro-card">
       <button class="close-button" type="button" aria-label="Close" data-intro-close>×</button>
       <img src="images/brand-core/7036c-480.webp" alt="" width="150" height="118" />
@@ -34,24 +31,23 @@
   // Append now (hidden) so main.js, which runs after this script, binds the Klaviyo handler to the form.
   document.body.appendChild(el);
   let lastFocus = null;
+  let stopPour = null;
   function open() {
     el.hidden = false; lastFocus = document.activeElement;
     document.documentElement.style.overflow = "hidden";
-    // Force a style/layout pass with the liquid at height 0 before the class flips, so the height
-    // transition actually runs. Timers (not requestAnimationFrame) so this also works if the tab
-    // was loaded in the background: rAF is frozen in hidden tabs, timers are not.
-    void el.querySelector(".pour-liquid").offsetHeight;
-    if (reduce) { el.classList.add("is-pouring", "is-full"); focusCard(); return; }
+    const canvas = el.querySelector(".pour-canvas");
+    const finish = () => { el.classList.add("is-full"); focusCard(); };
+    if (reduce || !window.qtPour) { el.classList.add("is-pouring"); finish(); return; }
     setTimeout(() => {
       el.classList.add("is-pouring");
-      setTimeout(() => { el.classList.add("is-full"); focusCard(); }, 2600);
+      stopPour = window.qtPour.start(canvas, { duration: 2700, onFull: finish });
     }, 60);
   }
   function focusCard() { setTimeout(() => el.querySelector("#intro-email")?.focus({ preventScroll: true }), 350); }
   function close() {
     try { localStorage.setItem(KEY, String(Date.now())); } catch {}
     el.classList.remove("is-full"); el.classList.add("is-draining");
-    const done = () => { el.hidden = true; document.documentElement.style.overflow = ""; lastFocus?.focus?.(); el.remove(); };
+    const done = () => { stopPour?.(); el.hidden = true; document.documentElement.style.overflow = ""; lastFocus?.focus?.(); el.remove(); };
     reduce ? done() : setTimeout(done, 950);
   }
   el.addEventListener("click", (e) => { if (e.target.closest("[data-intro-close]")) close(); });

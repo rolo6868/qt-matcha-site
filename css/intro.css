@@ -7,47 +7,11 @@
   overflow: hidden;
 }
 .qt-intro[hidden] { display: none !important; }
-.qt-intro .pour-liquid {
-  position: absolute; left: -10%; right: -10%; bottom: 0;
-  height: 0;
-  background: linear-gradient(180deg, #9ec93f 0%, #6fa233 35%, #4f8a2b 100%);
-  transition: height 2.7s cubic-bezier(.42,0,.45,1);
-  will-change: height;
+.qt-intro .pour-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+  transition: transform .9s cubic-bezier(.6,0,.9,.6), opacity .9s ease;
 }
-.qt-intro.is-pouring .pour-liquid { height: 100%; }
-.qt-intro.is-draining .pour-liquid { transition: height .9s cubic-bezier(.6,0,.9,.6); height: 0; }
-/* wavy surface: two layered waves drifting sideways */
-.qt-intro .pour-wave {
-  position: absolute; left: 0; width: 200%; height: 64px; top: -60px;
-  background-repeat: repeat-x; background-size: 50% 100%;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 64' preserveAspectRatio='none'><path fill='%239ec93f' d='M0 40 C 180 0 360 0 540 40 S 900 80 1080 40 S 1350 8 1440 40 V64 H0 Z'/></svg>");
-  animation: qt-wave 2.8s linear infinite;
-}
-.qt-intro .pour-wave.two {
-  top: -44px; opacity: .55; animation-duration: 4.1s; animation-direction: reverse;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 64' preserveAspectRatio='none'><path fill='%23b9dd63' d='M0 44 C 240 10 420 10 600 44 S 960 80 1200 44 S 1380 20 1440 44 V64 H0 Z'/></svg>");
-}
-@keyframes qt-wave { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-/* the stream while pouring */
-.qt-intro .pour-stream {
-  position: absolute; top: -10%; left: 50%; width: clamp(18px, 2.4vw, 34px); height: 0;
-  transform: translateX(-50%);
-  background: linear-gradient(180deg, #b9dd63, #6fa233);
-  border-radius: 0 0 50% 50%;
-  transition: height .55s ease-in;
-  opacity: .95;
-}
-.qt-intro.is-pouring .pour-stream { height: 115%; }
-.qt-intro.is-full .pour-stream { transition: opacity .3s, height .4s; opacity: 0; height: 0; }
-/* bubbles */
-.qt-intro .bubble {
-  position: absolute; bottom: -20px; width: 10px; height: 10px; border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #ffffffee, #e6f5b8aa 60%, #cfe98a55);
-  box-shadow: inset -1px -1px 2px #ffffff80;
-  opacity: 0; animation: qt-bubble 3.4s ease-in infinite; animation-play-state: paused;
-}
-.qt-intro.is-pouring .bubble { animation-play-state: running; }
-@keyframes qt-bubble { 0% { transform: translateY(0) translateX(0) scale(.5); opacity: 0; } 15% { opacity: .85; } 50% { transform: translateY(-45vh) translateX(6px) scale(.95); } 100% { transform: translateY(-96vh) translateX(-4px) scale(1.15); opacity: 0; } }
+.qt-intro.is-draining .pour-canvas { transform: translateY(100%); opacity: .9; }
 /* the card */
 .qt-intro .intro-card {
   position: relative; z-index: 2;
@@ -74,8 +38,7 @@
 .qt-intro .intro-skip { display: inline-block; margin-top: 14px; font-size: 14px; text-decoration: underline; text-underline-offset: 3px; background: none; padding: 8px; min-height: 44px; }
 
 @media (prefers-reduced-motion: reduce) {
-  .qt-intro .pour-liquid, .qt-intro .pour-stream, .qt-intro .intro-card { transition: none; }
-  .qt-intro .pour-wave, .qt-intro .bubble { animation: none; }
+  .qt-intro .pour-canvas, .qt-intro .intro-card { transition: none; }
 }
 .qt-intro .intro-card { max-height: calc(100dvh - 32px); overflow-y: auto; }
 @media (max-width: 480px) {
