@@ -205,3 +205,18 @@ main .section-pad.center .btn { margin-top: 8px; }
 @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
 .contact-form .stock-fine { color: #3e5734; opacity: 1; }
 .contact-form .stock-fine a { color: var(--ink); }
+
+/* Sourcing band */
+.sourcing { background: var(--ink); color: var(--cream); }
+.sourcing-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+.sourcing .eyebrow { color: var(--lime); }
+.sourcing h2 { font-size: clamp(32px, 4.2vw, 56px); margin: 8px 0 14px; color: var(--cream); }
+.sourcing .lead { max-width: 720px; margin: 0 auto 34px; color: #f9f8f1d9; }
+.sourcing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; text-align: left; }
+.sourcing-grid article { background: #f9f8f10f; border: 1px solid #f9f8f126; border-radius: 22px; padding: 22px 20px; }
+.src-ico { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--lime); color: var(--ink); font-weight: 800; font-size: 20px; margin-bottom: 12px; }
+.sourcing-grid h3 { font-size: 20px; margin: 0 0 6px; color: var(--cream); }
+.sourcing-grid p { margin: 0; font-size: 15px; line-height: 1.5; color: #f9f8f1d9; }
+.sourcing-fine { font-size: 13px; color: #f9f8f1b3; margin: 26px auto 0; max-width: 760px; line-height: 1.5; }
+@media (max-width: 1000px) { .sourcing-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .sourcing-grid { grid-template-columns: 1fr; } }
