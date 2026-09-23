@@ -1,0 +1,79 @@
+/* First-visit "pour" intro. Shown once per browser (localStorage qt_intro_seen). */
+.qt-intro {
+  position: fixed; inset: 0; z-index: 200;
+  display: grid; place-items: center;
+  padding: 24px;
+  background: transparent;
+  overflow: hidden;
+}
+.qt-intro[hidden] { display: none !important; }
+.qt-intro .pour-liquid {
+  position: absolute; left: -10%; right: -10%; bottom: 0;
+  height: 0;
+  background: linear-gradient(180deg, #9ec93f 0%, #6fa233 35%, #4f8a2b 100%);
+  transition: height 2.3s cubic-bezier(.42,0,.45,1);
+  will-change: height;
+}
+.qt-intro.is-pouring .pour-liquid { height: 120%; }
+.qt-intro.is-draining .pour-liquid { transition: height .9s cubic-bezier(.6,0,.9,.6); height: 0; }
+/* wavy surface: two layered waves drifting sideways */
+.qt-intro .pour-wave {
+  position: absolute; left: 0; width: 200%; height: 64px; top: -60px;
+  background-repeat: repeat-x; background-size: 50% 100%;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 64' preserveAspectRatio='none'><path fill='%239ec93f' d='M0 40 C 180 0 360 0 540 40 S 900 80 1080 40 S 1350 8 1440 40 V64 H0 Z'/></svg>");
+  animation: qt-wave 2.8s linear infinite;
+}
+.qt-intro .pour-wave.two {
+  top: -44px; opacity: .55; animation-duration: 4.1s; animation-direction: reverse;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 64' preserveAspectRatio='none'><path fill='%23b9dd63' d='M0 44 C 240 10 420 10 600 44 S 960 80 1200 44 S 1380 20 1440 44 V64 H0 Z'/></svg>");
+}
+@keyframes qt-wave { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+/* the stream while pouring */
+.qt-intro .pour-stream {
+  position: absolute; top: -10%; left: 50%; width: clamp(18px, 2.4vw, 34px); height: 0;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #b9dd63, #6fa233);
+  border-radius: 0 0 50% 50%;
+  transition: height .55s ease-in;
+  opacity: .95;
+}
+.qt-intro.is-pouring .pour-stream { height: 115%; }
+.qt-intro.is-full .pour-stream { transition: opacity .3s, height .4s; opacity: 0; height: 0; }
+/* bubbles */
+.qt-intro .bubble {
+  position: absolute; bottom: -20px; width: 10px; height: 10px; border-radius: 50%;
+  background: #e6f5b8; opacity: 0; animation: qt-bubble 3.4s ease-in infinite;
+}
+.qt-intro.is-full .bubble { opacity: .7; }
+@keyframes qt-bubble { 0% { transform: translateY(0) scale(.6); opacity: 0; } 20% { opacity: .7; } 100% { transform: translateY(-70vh) scale(1.1); opacity: 0; } }
+
+/* the card */
+.qt-intro .intro-card {
+  position: relative; z-index: 2;
+  width: min(520px, 100%);
+  background: var(--cream); color: var(--ink);
+  border-radius: 28px; padding: 34px 30px 26px;
+  box-shadow: 0 30px 80px #2e4b2140;
+  text-align: center;
+  opacity: 0; transform: translateY(28px) scale(.98);
+  transition: opacity .5s ease, transform .6s cubic-bezier(.2,.8,.2,1);
+}
+.qt-intro.is-full .intro-card { opacity: 1; transform: none; }
+.qt-intro .intro-card .close-button { position: absolute; top: 12px; right: 12px; }
+.qt-intro .intro-card img { width: 150px; height: auto; margin: -8px auto 6px; transform: rotate(-8deg); filter: url(#packet-shadow-lift); }
+.qt-intro .intro-card .eyebrow { font-size: 11px; margin-bottom: 8px; }
+.qt-intro .intro-card h2 { font-size: clamp(32px, 6vw, 44px); line-height: 1.02; margin-bottom: 12px; }
+.qt-intro .intro-card p { font-size: 17px; line-height: 1.5; }
+.qt-intro .intro-form { display: grid; gap: 10px; margin-top: 20px; text-align: left; }
+.qt-intro .intro-form label { font-weight: 600; font-size: 14px; }
+.qt-intro .intro-form input { width: 100%; padding: 15px 18px; border: 1px solid var(--ink); border-radius: 12px; background: #fff; color: var(--ink); font: inherit; font-size: 16px; }
+.qt-intro .intro-form input:focus-visible { outline: 3px solid var(--pink-hot); outline-offset: 3px; }
+.qt-intro .intro-form .btn { justify-content: center; }
+.qt-intro .intro-fine { font-size: 12px; color: #3e5734; margin-top: 12px; }
+.qt-intro .intro-skip { display: inline-block; margin-top: 14px; font-size: 14px; text-decoration: underline; text-underline-offset: 3px; background: none; padding: 8px; min-height: 44px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .qt-intro .pour-liquid, .qt-intro .pour-stream, .qt-intro .intro-card { transition: none; }
+  .qt-intro .pour-wave, .qt-intro .bubble { animation: none; }
+}
+@media (max-width: 480px) { .qt-intro .intro-card { padding: 28px 20px 22px; } .qt-intro .intro-card img { width: 120px; } }
