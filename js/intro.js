@@ -38,13 +38,14 @@
     el.hidden = false; lastFocus = document.activeElement;
     document.documentElement.style.overflow = "hidden";
     // Force a style/layout pass with the liquid at height 0 before the class flips, so the height
-    // transition actually runs (Safari otherwise jumps straight to full when unhiding + changing state in one frame).
+    // transition actually runs. Timers (not requestAnimationFrame) so this also works if the tab
+    // was loaded in the background: rAF is frozen in hidden tabs, timers are not.
     void el.querySelector(".pour-liquid").offsetHeight;
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      if (reduce) { el.classList.add("is-pouring", "is-full"); focusCard(); return; }
+    if (reduce) { el.classList.add("is-pouring", "is-full"); focusCard(); return; }
+    setTimeout(() => {
       el.classList.add("is-pouring");
       setTimeout(() => { el.classList.add("is-full"); focusCard(); }, 2600);
-    }));
+    }, 60);
   }
   function focusCard() { setTimeout(() => el.querySelector("#intro-email")?.focus({ preventScroll: true }), 350); }
   function close() {
@@ -66,6 +67,13 @@
   // main.js posts the form to Klaviyo and fires qt:subscribed on success → mark seen and drain after a beat.
   el.querySelector(".intro-form").addEventListener("qt:subscribed", () => { try { localStorage.setItem(KEY, "subscribed"); } catch {} setTimeout(close, 2200); });
 
-  const start = () => setTimeout(open, 900);
-  if (document.readyState === "complete") start(); else window.addEventListener("load", start, { once: true });
+  // Only pour while the visitor is actually looking: if the page loaded in a background tab, wait
+  // for it to become visible, then run the full sequence from the top.
+  let started = false;
+  const start = () => {
+    if (started) return;
+    if (document.visibilityState === "hidden") { document.addEventListener("visibilitychange", start, { once: true }); return; }
+    started = true; setTimeout(open, 700);
+  };
+  if (document.readyState !== "loading") start(); else document.addEventListener("DOMContentLoaded", start, { once: true });
 })();
