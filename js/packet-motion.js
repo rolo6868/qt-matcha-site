@@ -1,4 +1,4 @@
-/* Approved QT packet scroll sequence. */
+/* Approved qt packet scroll sequence. */
 (()=>{
 
 const journey=document.querySelector('#packet'),stage=journey.querySelector('.stage'),packet=journey.querySelector('.packet'),cap=journey.querySelector('.cap'),chapters=[...journey.querySelectorAll('.chapter')],steps=[...journey.querySelectorAll('[data-step]')],berries=[...journey.querySelectorAll('.berry')],tags=[...journey.querySelectorAll('.tag')],ribbons=[...journey.querySelectorAll('.ribbon path')],reduce=matchMedia('(prefers-reduced-motion: reduce)');const clamp=n=>Math.max(0,Math.min(1,n)),smooth=n=>{n=clamp(n);return n*n*(3-2*n)};let pending=false;

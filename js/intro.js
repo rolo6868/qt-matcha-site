@@ -19,12 +19,12 @@
       <p class="eyebrow">FIRST TIME HERE? WE POURED YOU ONE.</p>
       <h2 id="intro-title">Get first dibs<br />on the first batch.</h2>
       <p>Fruit-forward matcha with iron, vitamin C, and collagen. Hear the moment it's in stock, plus 15% off your first order.</p>
-      <form class="news-form intro-form" data-tags="waitlist,first-batch,intro" data-success="You're in, QT. Watch your inbox for the first pour.">
+      <form class="news-form intro-form" data-tags="waitlist,first-batch,intro" data-success="You're in, qt. Watch your inbox for the first pour.">
         <label for="intro-email">Email address</label>
         <input id="intro-email" name="email" type="email" placeholder="Your email address" autocomplete="email" required />
         <button class="btn" type="submit">Pour me in →</button>
       </form>
-      <p class="intro-fine">By signing up you agree to receive QT Matcha emails. Unsubscribe anytime.</p>
+      <p class="intro-fine">By signing up you agree to receive qt matcha emails. Unsubscribe anytime.</p>
       <button class="intro-skip plain" type="button" data-intro-close>No thanks, just browsing</button>
     </div>`;
 
@@ -65,7 +65,7 @@
       } else canvasPour();
     }, 60);
   }
-  // Touch devices: focus the dialog itself, not the input — auto-focusing an input pops the keyboard,
+  // Touch devices: focus the dialog itself, not the input: auto-focusing an input pops the keyboard,
   // which shrinks the viewport and shoves the card off-centre / behind the keyboard on iOS.
   const touch = matchMedia("(hover: none) and (pointer: coarse)").matches;
   el.tabIndex = -1;

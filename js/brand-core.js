@@ -1,4 +1,4 @@
-/* QT Brand Core — native browser interactions, no build dependencies. */
+/* qt Brand Core: native browser interactions, no build dependencies. */
 (() => {
   const $ = (s) => document.querySelector(s);
   const $$ = (s) => [...document.querySelectorAll(s)];
@@ -27,11 +27,11 @@
     },
   };
   const approvedPhotos = { strawberry: [30, 6, 9, 15, 18, 33], peach: [17, 2, 11, 13, 29, 34], yuzu: [14, 4, 8, 16, 32], variety: [30, 17, 14, 9, 13, 32] };
-  const photoDescriptions = {"2": "White Peach QT with an iced matcha at home", "4": "Lemon Yuzu QT and iced matcha in the sunshine", "6": "Strawberry QT beside an open ice-filled bottle", "8": "Lemon Yuzu QT tucked into an everyday routine", "9": "Strawberry QT and an iced matcha moment", "11": "White Peach QT after a workout", "13": "White Peach QT packet held beside a refreshing drink", "14": "Lemon Yuzu QT with a green matcha water bottle", "15": "Strawberry QT and iced matcha during a cozy pause", "16": "Lemon Yuzu QT and a daily matcha break", "17": "White Peach QT beside a bottle ready to mix", "18": "Strawberry QT on the go", "29": "White Peach QT and iced matcha on the road", "30": "Iced matcha and a Strawberry QT packet in the sunshine", "32": "Lemon Yuzu QT and an iced drink at home", "33": "Strawberry QT during a sunny afternoon break", "34": "White Peach QT and a refreshing little pause"};
+  const photoDescriptions = {"2": "White Peach qt with an iced matcha at home", "4": "Lemon Yuzu qt and iced matcha in the sunshine", "6": "Strawberry qt beside an open ice-filled bottle", "8": "Lemon Yuzu qt tucked into an everyday routine", "9": "Strawberry qt and an iced matcha moment", "11": "White Peach qt after a workout", "13": "White Peach qt packet held beside a refreshing drink", "14": "Lemon Yuzu qt with a green matcha water bottle", "15": "Strawberry qt and iced matcha during a cozy pause", "16": "Lemon Yuzu qt and a daily matcha break", "17": "White Peach qt beside a bottle ready to mix", "18": "Strawberry qt on the go", "29": "White Peach qt and iced matcha on the road", "30": "Iced matcha and a Strawberry qt packet in the sunshine", "32": "Lemon Yuzu qt and an iced drink at home", "33": "Strawberry qt during a sunny afternoon break", "34": "White Peach qt and a refreshing little pause"};
   const photoPath = (n, width = 960) => `images/lifestyle/qt-lifestyle-${String(n).padStart(2, "0")}-${width}.webp`;
   const galleryKeys = () => ["packet", "variety", "lifestyle", ...approvedPhotos[selected].map(n => "photo:" + n)];
   let selected = "strawberry";
-  let galleryView = "lifestyle";
+  let galleryView = "packet";
   const menuToggle = $("#menu-toggle");
   const menu = $("#menu");
   function closeMenu() {
@@ -101,7 +101,7 @@
       $("#product-image").alt = photoDescriptions[number];
     } else {
       setImage($("#product-image"), view === "variety" ? flavors.variety.packet : flavor[view]);
-      $("#product-image").alt = view === "variety" ? "All three QT Matcha flavors" : flavor.name + " QT Matcha " + (view === "packet" ? "packet" : "with fresh fruit");
+      $("#product-image").alt = view === "variety" ? "All three qt matcha flavors" : flavor.name + " qt matcha " + (view === "packet" ? "packet" : "with fresh fruit");
     }
     $("#product-image").classList.toggle("contain", !isPhoto && (view !== "lifestyle" || selected === "variety"));
     $("#product-image").classList.toggle("approved-photo", isPhoto);
@@ -125,7 +125,7 @@
     setImage($("#packet-thumbnail"), f.packet);
     setImage($("#lifestyle-thumbnail"), f.lifestyle);
     renderPhotoThumbnails();
-    updateGallery("lifestyle");
+    updateGallery("packet");
   }
   $$("[data-select-flavor]").forEach((a) =>
     a.addEventListener("click", () => selectFlavor(a.dataset.selectFlavor)),
@@ -166,7 +166,7 @@
   let touchStart = null;
   $(".gallery-main").addEventListener("touchstart", event => { const t=event.changedTouches[0]; touchStart={x:t.clientX,y:t.clientY}; }, {passive:true});
   $(".gallery-main").addEventListener("touchend", event => { if (!touchStart) return; const t=event.changedTouches[0], dx=t.clientX-touchStart.x, dy=t.clientY-touchStart.y; if(Math.abs(dx)>45 && Math.abs(dx)>Math.abs(dy)*1.5) moveGallery(dx<0?1:-1); touchStart=null; }, {passive:true});
-  renderPhotoThumbnails(); updateGallery("lifestyle");
+  renderPhotoThumbnails(); updateGallery("packet");
   const quantity = $("#quantity");
   function setQuantity(n) {
     quantity.value = Math.max(1, Math.min(99, Math.floor(Number(n)) || 1));
@@ -202,7 +202,7 @@
   });
   $(".stock-form").addEventListener("qt:subscribed", () => {
     dialog.classList.add("is-subscribed");
-    $("#bag-title").textContent = "Good things are coming, QT.";
+    $("#bag-title").textContent = "Good things are coming, qt.";
     $("#stock-description").textContent = "Thanks for joining our first-batch list.";
   });
   $$('a[href="#nutrition"]').forEach((a) =>

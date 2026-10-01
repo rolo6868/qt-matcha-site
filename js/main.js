@@ -1,4 +1,4 @@
-// Privacy-policy footer link — guarantees every page footer links to privacy.html.
+// Privacy-policy footer link: guarantees every page footer links to privacy.html.
 // Pages with a hard-coded link (index, waitlist, about, faq, shop) are skipped automatically.
 (() => {
   const addPrivacyLink = () => {
@@ -26,7 +26,7 @@
     addPrivacyLink();
   }
 })();
-// qt matcha — shared interactions
+// qt matcha: shared interactions
 
 // mobile nav
 const burger = document.querySelector('.hamburger');
@@ -54,13 +54,13 @@ document.querySelectorAll('.faq-q').forEach((btn) => {
 });
 
 // newsletter + discount popup → email capture (waitlist)
-// Capture posts to a dedicated email tool (Klaviyo or Mailchimp), NOT Shopify —
+// Capture posts to a dedicated email tool (Klaviyo or Mailchimp), NOT Shopify:
 // the old /contact form_type=customer path is structurally rejected by stores on
 // Shopify's "New customer accounts" (HTTP 400), so it was removed. See EMAIL-CAPTURE.md
 // for the 10-minute setup; until CAPTURE is configured, forms show an honest
 // "not live yet" message instead of a fake confirmation.
 (() => {
-  // ---- capture backend config — fill in ONE provider (see EMAIL-CAPTURE.md) ----
+  // ---- capture backend config: fill in ONE provider (see EMAIL-CAPTURE.md) ----
   const CAPTURE = {
     provider: 'klaviyo',     // 'klaviyo' or 'mailchimp'  ('' = signups not live yet)
     // Klaviyo: Settings → API keys → "Public API Key / Site ID" (6 chars)…
@@ -81,7 +81,7 @@ document.querySelectorAll('.faq-q').forEach((btn) => {
   function subscribe(email, source) {
     if (!configured) return Promise.resolve(false);
     if (CAPTURE.provider === 'klaviyo') {
-      // Klaviyo client API — built for browser posts from any site (CORS-enabled).
+      // Klaviyo client API: built for browser posts from any site (CORS-enabled).
       return fetch('https://a.klaviyo.com/client/subscriptions/?company_id=' +
         encodeURIComponent(CAPTURE.klaviyoCompanyId), {
         method: 'POST',
@@ -101,7 +101,7 @@ document.querySelectorAll('.faq-q').forEach((btn) => {
       }).then((res) => res.ok).catch(() => false);
     }
     if (CAPTURE.provider === 'mailchimp') {
-      // Mailchimp JSONP endpoint — same-origin-proof and returns a real result object.
+      // Mailchimp JSONP endpoint: same-origin-proof and returns a real result object.
       return new Promise((resolve) => {
         const cb = 'qtMcCb' + Date.now();
         const timer = setTimeout(() => { cleanup(); resolve(false); }, 10000);
@@ -178,12 +178,12 @@ document.querySelectorAll('.faq-q').forEach((btn) => {
     overlay.innerHTML = `
       <div class="qt-pop-card">
         <button class="qt-pop-close" aria-label="Close">&times;</button>
-        <img class="qt-pop-img" src="images/flavor-flight.jpg" alt="qt matcha — vanilla, strawberry and coconut boxes">
+        <img class="qt-pop-img" src="images/flavor-flight.jpg" alt="qt matcha: vanilla, strawberry and coconut boxes">
         <div class="qt-pop-body">
           <span class="qt-pop-tag">🌸 the qt club</span>
           <h3><span class="hl">15% off</span> your first order</h3>
-          <p class="qt-pop-sub">We're almost ready to pour. Join the list and we'll email your 15%-off code the day we launch — plus first dibs on flavors &amp; iron-friendly recipes.</p>
-          <form class="news-form qt-pop-form" data-tags="newsletter,waitlist,popup" data-success="you're in — your 15% code lands in your inbox at launch 🍵">
+          <p class="qt-pop-sub">We're almost ready to pour. Join the list and we'll email your 15%-off code the day we launch, plus first dibs on flavors &amp; iron-friendly recipes.</p>
+          <form class="news-form qt-pop-form" data-tags="newsletter,waitlist,popup" data-success="you're in. your 15% code lands in your inbox at launch 🍵">
             <input type="email" placeholder="your email, qt" required aria-label="Email address">
             <button type="submit">save my 15% →</button>
           </form>
@@ -212,7 +212,7 @@ document.querySelectorAll('.faq-q').forEach((btn) => {
         }, 10000);
       }
     } catch (e) {
-      // localStorage blocked (private mode) — show once this session anyway
+      // localStorage blocked (private mode): show once this session anyway
       setTimeout(() => overlay.classList.add('open'), 10000);
     }
   }
@@ -221,7 +221,7 @@ document.querySelectorAll('.faq-q').forEach((btn) => {
   document.querySelectorAll('.news-form').forEach((form) => {
     const emailInput = form.querySelector('input[type="email"]');
     if (!emailInput) return;
-    const success = form.dataset.success || "you’re on the list — welcome to the qt club! 🍵";
+    const success = form.dataset.success || "you’re on the list. welcome to the qt club! 🍵";
 
     let note = null;
     function showNote(msg) {
@@ -267,8 +267,8 @@ document.querySelectorAll('.faq-q').forEach((btn) => {
         } else {
           if (btn) { btn.disabled = false; btn.textContent = btnLabel; }
           showNote(configured
-            ? 'hmm — that didn’t go through. mind trying again in a minute?'
-            : 'signups aren’t live just yet — check back soon 🍵');
+            ? 'hmm, that didn’t go through. mind trying again in a minute?'
+            : 'signups aren’t live just yet. check back soon 🍵');
         }
       });
     });
