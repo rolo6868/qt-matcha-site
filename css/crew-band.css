@@ -1,0 +1,50 @@
+/* Homepage: creator crew band inside the pink "qt in real life" section. */
+.crew-band {
+  margin: 44px var(--gutter) 4px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: clamp(24px, 4vw, 64px);
+  align-items: center;
+  background: var(--cream);
+  border-radius: 36px;
+  padding: clamp(26px, 3.4vw, 44px) clamp(26px, 4vw, 60px);
+  overflow: hidden;
+  position: relative;
+}
+.crew-band::before {
+  content: ""; position: absolute; right: -60px; bottom: -80px; width: 320px; height: 320px;
+  border-radius: 50%; background: var(--lime); opacity: .55;
+}
+.crew-band-copy { position: relative; max-width: 620px; }
+.crew-band-copy h3 { font-size: clamp(36px, 3.6vw, 56px); margin: 8px 0 12px; }
+.crew-band-copy p:not(.eyebrow) { font-size: 18px; line-height: 1.45; margin-bottom: 22px; }
+.crew-band-copy .btn { background: var(--ink); color: var(--cream); }
+.crew-band-copy .btn:hover { background: var(--lime); color: var(--ink); }
+
+.crew-band-phone {
+  position: relative; justify-self: center;
+  width: 190px; height: 360px; border-radius: 34px; padding: 30px 14px 16px;
+  background: var(--cream); border: 7px solid var(--ink);
+  box-shadow: 0 24px 40px rgba(46, 75, 33, .25);
+  display: flex; flex-direction: column; align-items: stretch; gap: 8px;
+  transform: rotate(6deg); transition: transform .4s cubic-bezier(.2, .8, .2, 1);
+}
+.crew-band:hover .crew-band-phone { transform: rotate(0deg) translateY(-4px); }
+.cb-island { position: absolute; top: 9px; left: 50%; width: 58px; height: 15px; border-radius: 10px; background: #15230f; transform: translateX(-50%); }
+.cb-title { text-align: center; font: 800 15px/1 var(--font-display); letter-spacing: -0.03em; }
+.cb-bar { height: 5px; border-radius: 4px; background: #2e4b2115; overflow: hidden; }
+.cb-bar i { display: block; width: 60%; height: 100%; background: var(--pink-hot); }
+.cb-packs { display: flex; justify-content: center; gap: 4px; background: var(--pink); border-radius: 18px; padding: 12px 0 8px; }
+.cb-packs img { height: 92px; width: auto; }
+.cb-packs img:nth-child(1) { transform: rotate(-10deg); }
+.cb-packs img:nth-child(3) { transform: rotate(10deg); }
+.cb-field { height: 26px; border-radius: 10px; background: #fff; border: 2px solid #2e4b2122; }
+.cb-field.short { width: 70%; }
+.cb-btn { margin-top: auto; text-align: center; background: var(--ink); color: var(--cream); border-radius: 999px; padding: 9px 0; font-weight: 700; font-size: 13px; }
+
+@media (max-width: 760px) {
+  .crew-band { grid-template-columns: 1fr; margin: 32px 16px 0; text-align: left; }
+  .crew-band-phone { display: none; }
+  .crew-band-copy .btn { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .crew-band-phone { transition: none; } }
