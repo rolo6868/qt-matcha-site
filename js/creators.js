@@ -18,6 +18,19 @@
   let step = 0;
   let busy = false;
   let started = false;
+  const stage = document.querySelector(".crew-stage");
+  const phone = document.querySelector(".phone");
+
+  function start() {
+    if (step === 0) show(1);
+    const r = phone.getBoundingClientRect();
+    if (r.top < 0 || r.bottom > innerHeight) {
+      phone.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+    }
+    document.getElementById("crew-name").focus({ preventScroll: true });
+  }
+  document.querySelectorAll("[data-start]").forEach((b) => b.addEventListener("click", start));
+  form.querySelector('.screen[data-step="0"]').addEventListener("click", () => { if (step === 0) start(); });
 
   function show(n, dir = 1) {
     screens.forEach((s) => {
@@ -35,6 +48,7 @@
     fill.style.width = `${(Math.min(n, LAST_INPUT_STEP) / LAST_INPUT_STEP) * 100}%`;
     nextBtn.innerHTML = `${labels[n] || "Next"} <span aria-hidden="true">→</span>`;
     form.classList.toggle("is-done", n === DONE_STEP);
+    stage.classList.toggle("started", n > 0);
     if (started && matchMedia("(max-width: 640px)").matches) {
       document.querySelector(".phone").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
     }
@@ -199,7 +213,7 @@
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     if (busy) return;
-    if (step === 0) { show(1); document.getElementById("crew-name").focus(); return; }
+    if (step === 0) { start(); return; }
     if (!validate(step)) return;
     if (step < LAST_INPUT_STEP) {
       show(step + 1);
